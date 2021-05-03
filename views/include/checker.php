@@ -18,7 +18,7 @@ if (isset($_COOKIE['lang'])) {
 }
 
 
-include("../helpers/function.php");
+require_once("../helpers/function.php");
 
 
 $tab_settings[] = array();

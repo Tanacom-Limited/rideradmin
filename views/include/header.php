@@ -81,7 +81,6 @@
                 <a class="dropdown-item" href="#" onclick="setLang('fr');"><i class="flag-icon flag-icon-fr"></i>
                     Français</a>
 
-
                 <?php } ?>
         </li>
 
@@ -111,12 +110,13 @@
                     <li role="separator" class="divider"></li>
                     <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="../models/action.php?logout=yes"><i
+                    <li><a href="../controller/action.php?logout=yes"><i
                                     class="fa fa-power-off"></i> <?php echo $log_out; ?>
                         </a></li>
                 </ul>
             </div>
         </li>
+
     </ul>
 
 

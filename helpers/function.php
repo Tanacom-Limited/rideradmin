@@ -10,7 +10,9 @@ include("../models/DB.php");
 DB::initialize();
 
 
-/* Start User */
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////USER FUNCTION///////////////////////////////////////////////
+
 function setUser($id, $nom_prenom, $email, $mdp, $statut, $telephone, $categorie_user)
 {
 
@@ -23,13 +25,13 @@ function setUser($id, $nom_prenom, $email, $mdp, $statut, $telephone, $categorie
 
     $mdp = md5($mdp);
 
-    $sql_verif = "SELECT id FROM tj_user WHERE email='$email' AND mdp='$mdp'";
+    $sql_verif = "SELECT id FROM tbl_user WHERE email='$email' AND mdp='$mdp'";
     $result_verif = mysqli_query(DB::$conn, $sql_verif);
 
     if (mysqli_num_rows($result_verif) > 0) {
         $res = '2';
     } else {
-        $sql = "INSERT INTO tj_user (id, nom_prenom, email, mdp, creer, statut, telephone, id_categorie_user)
+        $sql = "INSERT INTO tbl_user (id, nom_prenom, email, mdp, creer, statut, telephone, id_categorie_user)
             VALUES ($id,'$nom_prenom', '$email', '$mdp', '$date_heure', '$statut', '$telephone', $categorie_user)";
         $result = mysqli_query(DB::$conn, $sql);
         if ($result == 1) {
@@ -44,9 +46,6 @@ function setUser($id, $nom_prenom, $email, $mdp, $statut, $telephone, $categorie
 
 function setUserMod($id, $id_user_cat, $nom_prenom, $phone, $email, $statut)
 {
-//    
-//    DB::$conn->set_charset("utf8");
-
 
     $res = '0';
     $nom_prenom = str_replace("'", "\'", $nom_prenom);
@@ -54,7 +53,7 @@ function setUserMod($id, $id_user_cat, $nom_prenom, $phone, $email, $statut)
     $email = str_replace("'", "\'", $email);
     $date_heure = date('Y-m-d H:i:s');
 
-    $sql = "UPDATE tj_user SET nom_prenom='$nom_prenom', telephone='$phone', email='$email', statut='$statut', id_categorie_user=$id_user_cat WHERE id=$id";
+    $sql = "UPDATE tbl_user SET nom_prenom='$nom_prenom', telephone='$phone', email='$email', statut='$statut', id_categorie_user=$id_user_cat WHERE id=$id";
     $result = mysqli_query(DB::$conn, $sql);
 
     //mysqli_close(DB::$conn);
@@ -65,7 +64,7 @@ function getUser()
 {
 
     $sql = "SELECT u.id,u.nom_prenom,u.telephone,u.email,u.statut,u.creer,u.modifier,c.libelle as libCatUser
-        FROM tj_user u, tj_categorie_user c
+        FROM tbl_user u, tj_categorie_user c
         WHERE u.id_categorie_user=c.id";
 
     $result = mysqli_query(DB::$conn, $sql);
@@ -74,76 +73,60 @@ function getUser()
         $output[] = $row;
     }
 
-    //mysqli_close(DB::$conn);
-
     if (mysqli_num_rows($result) > 0) {
         return $output;
     } else {
         return $output = [];
     }
+
+    //mysqli_close(DB::$conn);
 }
 
 function delUser($id)
 {
-//    
-//  
 
-
-    $sql = "DELETE FROM tj_user WHERE id=$id";
+    $sql = "DELETE FROM tbl_user WHERE id=$id";
     $result = mysqli_query(DB::$conn, $sql);
 }
 
 function enableUser($id)
 {
-//    
-//  
 
-
-    $sql = "UPDATE tj_user SET statut='yes' WHERE id=$id";
+    $sql = "UPDATE tbl_user SET statut='yes' WHERE id=$id";
     $result = mysqli_query(DB::$conn, $sql);
 }
 
 function disableUser($id)
 {
-//    
-//  
-
-
-    $sql = "UPDATE tj_user SET statut='no' WHERE id=$id";
+    $sql = "UPDATE tbl_user SET statut='no' WHERE id=$id";
     $result = mysqli_query(DB::$conn, $sql);
 }
 
-
 function getLastUser()
 {
-//    
-//  
 
-
-    $sql = "SELECT * FROM tj_user ORDER BY id DESC LIMIT 1";
+    $sql = "SELECT * FROM tbl_user ORDER BY id DESC LIMIT 1";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
         $output[] = $row;
     }
 
-    //mysqli_close(DB::$conn);
     if (mysqli_num_rows($result) > 0) {
         return $output;
     } else {
         return $output = [];
     }
+
+    mysqli_close(DB::$conn);
+
 }
 
 function getUserById($id_user)
 {
 
-//    
-//    DB::$conn->set_charset("utf8");
-
-
     $sql = "SELECT u.id,u.nom_prenom,u.telephone,u.email,u.statut,u.creer,u.modifier,u.id_categorie_user,c.libelle as libCatUser
-        FROM tj_user u, tj_categorie_user c
+        FROM tbl_user u, tj_categorie_user c
         WHERE u.id_categorie_user=c.id AND u.id=$id_user";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -151,13 +134,19 @@ function getUserById($id_user)
         $output[] = $row;
     }
 
-    //mysqli_close(DB::$conn);
+
     if (mysqli_num_rows($result) > 0) {
         return $output;
     } else {
         return $output = [];
     }
+    mysqli_close(DB::$conn);
+
 }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 
 /* Start notification */
@@ -202,7 +191,7 @@ function setConnexion($email, $mdp)
     $mdp = md5($mdp);
 
     $sql_verif = "SELECT u.id,u.nom_prenom,u.telephone,u.email,u.statut,u.creer,u.modifier,c.libelle as libCatUser
-        FROM tj_user u, tj_categorie_user c
+        FROM tbl_user u, tj_categorie_user c
         WHERE u.id_categorie_user=c.id AND u.email='$email' AND u.mdp='$mdp' AND u.statut='yes'";
     $result_verif = mysqli_query(DB::$conn, $sql_verif);
 
@@ -268,7 +257,6 @@ function setCategorieUserMod($id, $categorie)
 function getCategorieUser()
 {
 
-
     $sql = "SELECT * FROM tj_categorie_user";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -276,12 +264,15 @@ function getCategorieUser()
         $output[] = $row;
     }
 
-    //mysqli_close(DB::$conn);
+
     if (mysqli_num_rows($result) > 0) {
         return $output;
     } else {
         return $output = [];
     }
+
+    mysqli_close(DB::$conn);
+
 }
 
 function getCategorieUserById($id_categorie)
@@ -664,6 +655,7 @@ function getEnabledCurrency()
 
     $sql = "SELECT * FROM tj_currency WHERE statut='yes'";
     $result = mysqli_query(DB::$conn, $sql);
+
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
         $output[] = $row;
@@ -676,7 +668,6 @@ function getEnabledCurrency()
     }
 
     mysqli_close(DB::$conn);
-
 }
 
 function getCurrencyById($id_type)
@@ -1856,12 +1847,12 @@ function getLastVehiculeRental()
     }
 }
 
-/* End Véhicule Rental */
 
-/* Start Conducteur */
-function setConducteur($nom, $prenom, $cnib, $statut, $login, $mdp)
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////DRIVER FUNCTION ////////////////////////////////////////////////////
+
+function setDriver($nom, $prenom, $cnib, $statut, $login, $mdp)
 {
-
 
     $res = '0';
     $nom = str_replace("'", "\'", $nom);
@@ -1873,13 +1864,13 @@ function setConducteur($nom, $prenom, $cnib, $statut, $login, $mdp)
 
     $mdp = md5($mdp);
 
-    $sql_verif = "SELECT id FROM tj_conducteur WHERE phone='$login' AND mdp='$mdp'";
+    $sql_verif = "SELECT id FROM tbl_driver WHERE phone='$login' AND mdp='$mdp'";
     $result_verif = mysqli_query(DB::$conn, $sql_verif);
 
     if (mysqli_num_rows($result_verif) > 0) {
         $res = '2';
     } else {
-        $sql = "INSERT INTO tj_conducteur (nom, prenom, cnib, phone, mdp, statut, creer, online) VALUES ('$nom', '$prenom', '$cnib', '$login', '$mdp', '$statut', '$date_heure', 'yes')";
+        $sql = "INSERT INTO tbl_driver (nom, prenom, cnib, phone, mdp, statut, creer, online) VALUES ('$nom', '$prenom', '$cnib', '$login', '$mdp', '$statut', '$date_heure', 'yes')";
         $result = mysqli_query(DB::$conn, $sql);
         if ($result == 1) {
             $res = '1';
@@ -1891,7 +1882,7 @@ function setConducteur($nom, $prenom, $cnib, $statut, $login, $mdp)
     return $res;
 }
 
-function setConducteurMod($id, $nom, $prenom, $cnib, $login, $statut)
+function setDriverMod($id, $nom, $prenom, $cnib, $login, $statut)
 {
 
 
@@ -1903,18 +1894,16 @@ function setConducteurMod($id, $nom, $prenom, $cnib, $login, $statut)
     $statut = str_replace("'", "\'", $statut);
     $date_heure = date('Y-m-d H:i:s');
 
-    $sql = "UPDATE tj_conducteur SET nom='$nom', prenom='$prenom', cnib='$cnib', phone='$login', statut='$statut', modifier='$date_heure' WHERE id=$id";
+    $sql = "UPDATE tbl_driver SET nom='$nom', prenom='$prenom', cnib='$cnib', phone='$login', statut='$statut', modifier='$date_heure' WHERE id=$id";
     $result = mysqli_query(DB::$conn, $sql);
 
     //mysqli_close(DB::$conn);
     return $res;
 }
 
-function getConducteur()
+function getDriver()
 {
-
-
-    $sql = "SELECT * FROM tj_conducteur";
+    $sql = "SELECT * FROM tbl_driver";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
@@ -1929,11 +1918,29 @@ function getConducteur()
     }
 }
 
-function getConducteurDisabled()
+function getDriverDisabled()
 {
 
+    $sql = "SELECT * FROM tbl_driver WHERE statut='no'";
+    $result = mysqli_query(DB::$conn, $sql);
+    // output data of each row
+    while ($row = mysqli_fetch_assoc($result)) {
+        $output[] = $row;
+    }
 
-    $sql = "SELECT * FROM tj_conducteur WHERE statut='no'";
+    if (mysqli_num_rows($result) > 0) {
+        return $output;
+    } else {
+        return $output = [];
+    }
+
+    //mysqli_close(DB::$conn);
+}
+
+function getDriverById($id_conducteur)
+{
+
+    $sql = "SELECT * FROM tbl_driver WHERE id=$id_conducteur";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
@@ -1948,30 +1955,11 @@ function getConducteurDisabled()
     }
 }
 
-function getConducteurById($id_conducteur)
+function getIdDriverByLibelle($lib_annee)
 {
 
 
-    $sql = "SELECT * FROM tj_conducteur WHERE id=$id_conducteur";
-    $result = mysqli_query(DB::$conn, $sql);
-    // output data of each row
-    while ($row = mysqli_fetch_assoc($result)) {
-        $output[] = $row;
-    }
-
-    //mysqli_close(DB::$conn);
-    if (mysqli_num_rows($result) > 0) {
-        return $output;
-    } else {
-        return $output = [];
-    }
-}
-
-function getIdConducteurByLibelle($lib_annee)
-{
-
-
-    $sql = "SELECT id FROM tj_conducteur WHERE libelle='$lib_annee'";
+    $sql = "SELECT id FROM tbl_driver WHERE libelle='$lib_annee'";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
     $id = 0;
@@ -1983,22 +1971,20 @@ function getIdConducteurByLibelle($lib_annee)
     return $id;
 }
 
-function delConducteur($id)
+function delDriver($id)
 {
-
-
-    $sql = "DELETE FROM tj_conducteur WHERE id=$id";
+    $sql = "DELETE FROM tbl_driver WHERE id=$id";
     $result = mysqli_query(DB::$conn, $sql);
     //mysqli_close(DB::$conn);
 }
 
-function enableConducteur($id)
+function enableDriver($id)
 {
 
-    $sql = "UPDATE tj_conducteur SET statut='yes' WHERE id=$id";
+    $sql = "UPDATE tbl_driver SET statut='yes' WHERE id=$id";
     $result = mysqli_query(DB::$conn, $sql);
 
-    $sql = "SELECT nom, prenom, email FROM tj_conducteur WHERE id='$id'";
+    $sql = "SELECT nom, prenom, email FROM tbl_driver WHERE id='$id'";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
     $nom = "";
@@ -2049,17 +2035,17 @@ function enableConducteur($id)
     mail($to, $subject, $message, $headers);
 }
 
-function disableConducteur($id)
+function disableDriver($id)
 {
 
-    $sql = "UPDATE tj_conducteur SET statut='no' WHERE id=$id";
+    $sql = "UPDATE tbl_driver SET statut='no' WHERE id=$id";
     $result = mysqli_query(DB::$conn, $sql);
 }
 
 function getLastConducteur()
 {
 
-    $sql = "SELECT * FROM tj_conducteur ORDER BY id DESC LIMIT 1";
+    $sql = "SELECT * FROM tbl_driver ORDER BY id DESC LIMIT 1";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
@@ -2074,13 +2060,17 @@ function getLastConducteur()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
 /* Start All Vehicle */
 function getAllVehicle()
 {
 
 
     $sql = "SELECT v.id,v.brand,v.model,v.color,v.numberplate,v.statut,c.latitude,c.longitude,v.creer,v.modifier,c.nom,c.prenom,c.phone,c.online
-        FROM tj_vehicule v, tj_conducteur c
+        FROM tj_vehicule v, tbl_driver c
         WHERE v.id_conducteur=c.id AND v.statut='yes' AND c.longitude!='' AND c.latitude!=''";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -2126,7 +2116,6 @@ function setAffectation($conducteur, $vehicule, $statut)
 
 function setAffectationMod($id, $id_conducteur, $id_taxi, $statut)
 {
-
     $res = '0';
     $date_heure = date('Y-m-d H:i:s');
 
@@ -2142,7 +2131,7 @@ function getAffectation()
 
 
     $sql = "SELECT a.id,a.statut,a.creer,a.modifier,v.numero,c.nom,c.prenom,v.id as idTaxi,c.id as idConducteur
-        FROM tj_affectation a, tj_taxi v, tj_conducteur c
+        FROM tj_affectation a, tj_taxi v, tbl_driver c
         WHERE a.id_taxi=v.id AND a.id_conducteur=c.id";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -2297,13 +2286,13 @@ function setUtilisateurApp($conducteur, $vehicule, $statut)
 
     $mdp = md5($mdp);
 
-    $sql_verif = "SELECT id FROM tj_user_app WHERE id_taxi='$vehicule'";
+    $sql_verif = "SELECT id FROM tbl_user_app WHERE id_taxi='$vehicule'";
     $result_verif = mysqli_query(DB::$conn, $sql_verif);
 
     if (mysqli_num_rows($result_verif) > 0) {
         $res = '2';
     } else {
-        $sql = "INSERT INTO tj_user_app (id_taxi, id_conducteur, statut, creer) VALUES ('$vehicule', '$conducteur', '$statut', '$date_heure')";
+        $sql = "INSERT INTO tbl_user_app (id_taxi, id_conducteur, statut, creer) VALUES ('$vehicule', '$conducteur', '$statut', '$date_heure')";
         $result = mysqli_query(DB::$conn, $sql);
         if ($result == 1) {
             $res = '1';
@@ -2321,7 +2310,7 @@ function setUtilisateurAppMod($id, $id_conducteur, $id_taxi, $statut)
     $res = '0';
     $date_heure = date('Y-m-d H:i:s');
 
-    $sql = "UPDATE tj_user_app SET id_conducteur=$id_conducteur, id_taxi=$id_taxi, statut='$statut', modifier='$date_heure' WHERE id=$id";
+    $sql = "UPDATE tbl_user_app SET id_conducteur=$id_conducteur, id_taxi=$id_taxi, statut='$statut', modifier='$date_heure' WHERE id=$id";
     $result = mysqli_query(DB::$conn, $sql);
 
     //mysqli_close(DB::$conn);
@@ -2332,7 +2321,7 @@ function getUserApp()
 {
 
 
-    $sql = "SELECT * FROM tj_user_app";
+    $sql = "SELECT * FROM tbl_user_app";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
@@ -2351,7 +2340,7 @@ function getUserAppById($id_affectation)
 {
 
 
-    $sql = "SELECT * FROM tj_user_app WHERE id=$id_affectation";
+    $sql = "SELECT * FROM tbl_user_app WHERE id=$id_affectation";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
@@ -2370,7 +2359,7 @@ function getIdUserAppByLibelle($lib_annee)
 {
 
 
-    $sql = "SELECT id FROM tj_user_app WHERE libelle='$lib_annee'";
+    $sql = "SELECT id FROM tbl_user_app WHERE libelle='$lib_annee'";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
     $id = 0;
@@ -2386,7 +2375,7 @@ function delUserApp($id)
 {
 
 
-    $sql = "DELETE FROM tj_user_app WHERE id=$id";
+    $sql = "DELETE FROM tbl_user_app WHERE id=$id";
     $result = mysqli_query(DB::$conn, $sql);
     //mysqli_close(DB::$conn);
 }
@@ -2395,7 +2384,7 @@ function enableUserApp($id)
 {
 
 
-    $sql = "UPDATE tj_user_app SET statut='yes' WHERE id=$id";
+    $sql = "UPDATE tbl_user_app SET statut='yes' WHERE id=$id";
     $result = mysqli_query(DB::$conn, $sql);
 }
 
@@ -2403,7 +2392,7 @@ function disableUserApp($id)
 {
 
 
-    $sql = "UPDATE tj_user_app SET statut='no' WHERE id=$id";
+    $sql = "UPDATE tbl_user_app SET statut='no' WHERE id=$id";
     $result = mysqli_query(DB::$conn, $sql);
 }
 
@@ -2411,7 +2400,7 @@ function getLastUserApp()
 {
 
 
-    $sql = "SELECT * FROM tj_user_app ORDER BY id DESC LIMIT 1";
+    $sql = "SELECT * FROM tbl_user_app ORDER BY id DESC LIMIT 1";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
@@ -2474,7 +2463,7 @@ function getSuggestion()
 
 
     $sql = "SELECT s.id,s.message,s.creer,s.modifier,s.id_user_app
-        FROM tj_suggestion s, tj_user_app u WHERE s.id_user_app=u.id";
+        FROM tj_suggestion s, tbl_user_app u WHERE s.id_user_app=u.id";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
@@ -2605,7 +2594,7 @@ function getCommentaire()
 {
 
     $sql = "SELECT c.id,c.description,c.id_conducteur,c.creer,c.modifier,c.id_user_app,c.statut
-        FROM tj_commentaire c, tj_user_app u WHERE c.id_user_app=u.id";
+        FROM tj_commentaire c, tbl_user_app u WHERE c.id_user_app=u.id";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
@@ -2745,7 +2734,7 @@ function getRequete()
 
     $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
         ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image
-        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.id_user_app=u.id AND r.id_payment_method=m.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c, tj_payment_method m WHERE r.id_user_app=u.id AND r.id_payment_method=m.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -2767,7 +2756,7 @@ function getRequeteAmount()
 {
 
     $sql_cu = "SELECT montant as cu
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
 
     $result_cu = mysqli_query(DB::$conn, $sql_cu);
@@ -2834,7 +2823,7 @@ function getRequeteAmount()
 
 
     $sql = "SELECT sum(r.montant) as montant
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
 
     $result = mysqli_query(DB::$conn, $sql);
@@ -2859,7 +2848,7 @@ function getRequeteNew()
 
     $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
         ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image
-        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.statut='new' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c, tj_payment_method m WHERE r.statut='new' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -2882,7 +2871,7 @@ function getRequeteNewAmount()
 
 
     $sql_cu = "SELECT montant as cu
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='new' AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='new' AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result_cu = mysqli_query(DB::$conn, $sql_cu);
     $earning = 0;
@@ -2934,7 +2923,7 @@ function getRequeteNewAmount()
 
 
     $sql = "SELECT sum(r.montant) as montant
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='new' AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='new' AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -2958,7 +2947,7 @@ function getRequeteConfirmedAmount()
 
 
     $sql_cu = "SELECT montant as cu
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='confirmed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='confirmed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result_cu = mysqli_query(DB::$conn, $sql_cu);
     $earning = 0;
@@ -3010,7 +2999,7 @@ function getRequeteConfirmedAmount()
 
 
     $sql = "SELECT sum(r.montant) as montant
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='confirmed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='confirmed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3031,7 +3020,7 @@ function getRequeteOnRideAmount()
 {
 
     $sql_cu = "SELECT montant as cu
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='on ride' AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='on ride' AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result_cu = mysqli_query(DB::$conn, $sql_cu);
     $earning = 0;
@@ -3083,7 +3072,7 @@ function getRequeteOnRideAmount()
 
 
     $sql = "SELECT sum(r.montant) as montant
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='on ride' AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='on ride' AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3105,7 +3094,7 @@ function getRequeteCompletedAmount()
 
 
     $sql_cu = "SELECT montant as cu
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result_cu = mysqli_query(DB::$conn, $sql_cu);
     $earning = 0;
@@ -3157,7 +3146,7 @@ function getRequeteCompletedAmount()
 
 
     $sql = "SELECT sum(r.montant) as montant, montant as cu
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3183,7 +3172,7 @@ function getCustomerStats($id_customer, $month, $year)
 
     $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
         ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image,u.phone
-        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
         AND u.id=$id_customer AND r.creer>='$date1' AND r.creer<='$date2' ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3208,7 +3197,7 @@ function getDriverStats($id_driver, $month, $year)
 
     $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
         ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image,u.phone
-        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
         AND c.id=$id_driver AND r.creer>='$date1' AND r.creer<='$date2' ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3234,7 +3223,7 @@ function getEarningStats($month, $year)
 
     $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
         ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image,u.phone
-        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
         AND r.creer>='$date1' AND r.creer<='$date2' ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3260,7 +3249,7 @@ function getEarningStatsDashboard($year)
 
     $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
         ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image,u.phone
-        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
         AND r.creer>='$date1' AND r.creer<='$date2' ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3301,7 +3290,7 @@ function getRequeteAllSaleTodayAmount()
 function getRequeteCanceledAmount()
 {
     $sql_cu = "SELECT montant as cu
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='canceled' AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='canceled' AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result_cu = mysqli_query(DB::$conn, $sql_cu);
     $earning = 0;
@@ -3363,7 +3352,7 @@ function getRequeteCanceledAmount()
     // }
 
     $sql = "SELECT sum(r.montant) as montant
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='canceled' AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='canceled' AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3389,7 +3378,7 @@ function getRequeteMonthEarnAmount()
     $date_end = date("Y-m-t", strtotime($date_heure));
 
     $sql_cu = "SELECT montant as cu
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id AND r.creer >= '$date_start' AND r.creer <= '$date_end'
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id AND r.creer >= '$date_start' AND r.creer <= '$date_end'
         ORDER BY r.id DESC";
     $result_cu = mysqli_query(DB::$conn, $sql_cu);
     $earning = 0;
@@ -3440,7 +3429,7 @@ function getRequeteMonthEarnAmount()
     }
 
     $sql = "SELECT sum(r.montant) as montant
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3467,7 +3456,7 @@ function getRequeteTodayEarnAmount()
     // echo $date_end;
 
     $sql_cu = "SELECT montant as cu
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id AND r.creer >= '$date_start' AND r.creer <= '$date_end'
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id AND r.creer >= '$date_start' AND r.creer <= '$date_end'
         ORDER BY r.id DESC";
     $result_cu = mysqli_query(DB::$conn, $sql_cu);
     $earning = 0;
@@ -3518,7 +3507,7 @@ function getRequeteTodayEarnAmount()
     }
 
     $sql = "SELECT sum(r.montant) as montant
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3549,7 +3538,7 @@ function getRequeteWeekEarnAmount()
     // echo $week_end;
 
     $sql_cu = "SELECT montant as cu
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id AND r.creer >= '$week_start' AND r.creer <= '$week_end'
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id AND r.creer >= '$week_start' AND r.creer <= '$week_end'
         ORDER BY r.id DESC";
     $result_cu = mysqli_query(DB::$conn, $sql_cu);
     $earning = 0;
@@ -3600,7 +3589,7 @@ function getRequeteWeekEarnAmount()
     }
 
     $sql = "SELECT sum(r.montant) as montant
-        FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3623,7 +3612,7 @@ function getRequeteConfirmed()
 
     $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
         ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image
-        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.statut='confirmed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c, tj_payment_method m WHERE r.statut='confirmed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3645,7 +3634,7 @@ function getRequeteOnRide()
 
     $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
         ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image
-        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.statut='on ride' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c, tj_payment_method m WHERE r.statut='on ride' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3667,7 +3656,7 @@ function getRequeteCompleted()
 
     $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
         ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image
-        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3740,7 +3729,7 @@ function getRequeteCanceled()
 
     $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
         ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image
-        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.statut IN ('canceled','rejected') AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        FROM tj_requete r, tbl_user_app u, tbl_driver c, tj_payment_method m WHERE r.statut IN ('canceled','rejected') AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
         ORDER BY r.id DESC";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -3882,7 +3871,7 @@ function getReservation()
 
 
     $sql = "SELECT r.id,r.cout,r.distance,r.date_depart,r.heure_depart,r.contact,r.creer,r.modifier,r.id_user_app,r.statut,u.nom,u.prenom
-        FROM tj_reservation_taxi r, tj_user_app u WHERE r.id_user_app=u.id";
+        FROM tj_reservation_taxi r, tbl_user_app u WHERE r.id_user_app=u.id";
 
     $result = mysqli_query(DB::$conn, $sql);
 
@@ -4034,7 +4023,7 @@ function getLocation()
 
     $sql = "SELECT l.id,l.nb_jour,l.contact,l.date_debut,l.date_fin,l.creer,l.modifier,l.id_user_app,l.statut,
         u.nom,u.prenom,tv.libelle as libTypeVehicule
-        FROM tj_location_vehicule l, tj_user_app u, tj_vehicule_rental v, tj_type_vehicule_rental tv
+        FROM tj_location_vehicule l, tbl_user_app u, tj_vehicule_rental v, tj_type_vehicule_rental tv
         WHERE l.id_user_app=u.id AND l.id_vehicule_rental=v.id AND v.id_type_vehicule_rental=tv.id";
     $result = mysqli_query(DB::$conn, $sql);
     // output data of each row
@@ -4151,10 +4140,10 @@ function setChangeMdp($anc_mdp, $new_mdp)
     $anc_mdp = md5($anc_mdp);
     $new_mdp = md5($new_mdp);
 
-    $sql = "SELECT id FROM tj_user WHERE mdp='$anc_mdp'";
+    $sql = "SELECT id FROM tbl_user WHERE mdp='$anc_mdp'";
     $result = mysqli_query(DB::$conn, $sql);
     if (mysqli_num_rows($result) > 0) {
-        $sql1 = "UPDATE tj_user SET mdp='$new_mdp' WHERE mdp='$anc_mdp'";
+        $sql1 = "UPDATE tbl_user SET mdp='$new_mdp' WHERE mdp='$anc_mdp'";
         if (mysqli_query(DB::$conn, $sql1)) {
             $res = '1';
         } else {

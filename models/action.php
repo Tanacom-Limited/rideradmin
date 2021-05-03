@@ -1,4 +1,5 @@
 <?php
+
 include("../helpers/function.php");
 
 /* Start user */
@@ -27,9 +28,10 @@ if ((isset($_POST['id_user_mod']) && !empty($_POST['id_user_mod']))
     && (isset($_POST['statut_mod']) && !empty($_POST['statut_mod']))) {
     $res = setUserMod($_POST['id_user_mod'], $_POST['categorie_user_mod'], $_POST['nom_prenom_mod']
         , $_POST['telephone_mod'], $_POST['email_mod'], $_POST['statut_mod']);
-    // if($res == 1)
-    $_SESSION['status'] = 1;
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    if ($res == 1) {
+        $_SESSION['status'] = 1;
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
 }
 
 if ((isset($_GET['id_user']))) {
@@ -50,6 +52,7 @@ if ((isset($_GET['id_user_desactiver']))) {
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 /* End user */
+
 
 /* Start notification */
 if ((isset($_GET['id_notification']))) {
@@ -98,13 +101,6 @@ if ((isset($_POST['anc_mdp']) && !empty($_POST['anc_mdp']))
 }
 /* End change mdp */
 
-/* Start deconnexion */
-if (isset($_GET['logout']) && $_GET['logout'] == 'yes') {
-    session_destroy();
-    unset($_SESSION['user_info']);
-    header('Location: ../views/login.php');
-}
-/* End deconnexion */
 
 /* Start catégorie utilisateur */
 if ((isset($_POST['libelle_categorie_user']) && !empty($_POST['libelle_categorie_user']))) {
@@ -893,7 +889,7 @@ if ((isset($_POST['nom_conducteur']) && !empty($_POST['nom_conducteur']))
     && (isset($_POST['mdp_conducteur']) && !empty($_POST['mdp_conducteur']))
     && (isset($_POST['statut_conducteur']) && !empty($_POST['statut_conducteur']))
     && (isset($_POST['login_conducteur']) && !empty($_POST['login_conducteur']))) {
-    $res = setConducteur($_POST['nom_conducteur'], $_POST['prenom_conducteur'], $_POST['cnib_conducteur'], $_POST['statut_conducteur'], $_POST['login_conducteur'], $_POST['mdp_conducteur']);
+    $res = setDriver($_POST['nom_conducteur'], $_POST['prenom_conducteur'], $_POST['cnib_conducteur'], $_POST['statut_conducteur'], $_POST['login_conducteur'], $_POST['mdp_conducteur']);
     if ($res == 1) {
         $_SESSION['status'] = 1;
         header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -909,7 +905,7 @@ if ((isset($_POST['id_conducteur_mod']) && !empty($_POST['id_conducteur_mod']))
     && (isset($_POST['cnib_conducteur_mod']) && !empty($_POST['cnib_conducteur_mod']))
     && (isset($_POST['login_conducteur_mod']) && !empty($_POST['login_conducteur_mod']))
     && (isset($_POST['statut_conducteur_mod']) && !empty($_POST['statut_conducteur_mod']))) {
-    $res = setConducteurMod($_POST['id_conducteur_mod'], $_POST['nom_conducteur_mod'], $_POST['prenom_conducteur_mod']
+    $res = setDriverMod($_POST['id_conducteur_mod'], $_POST['nom_conducteur_mod'], $_POST['prenom_conducteur_mod']
         , $_POST['cnib_conducteur_mod'], $_POST['login_conducteur_mod'], $_POST['statut_conducteur_mod']);
     // if($res == 1)
     $_SESSION['status'] = 1;
@@ -917,19 +913,19 @@ if ((isset($_POST['id_conducteur_mod']) && !empty($_POST['id_conducteur_mod']))
 }
 
 if ((isset($_GET['id_conducteur']))) {
-    delConducteur($_GET['id_conducteur']);
+    delDriver($_GET['id_conducteur']);
     $_SESSION['status'] = 1;
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
 if ((isset($_GET['id_conducteur_activer']))) {
-    enableConducteur($_GET['id_conducteur_activer']);
+    enableDriver($_GET['id_conducteur_activer']);
     $_SESSION['status'] = 1;
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
 if ((isset($_GET['id_conducteur_desactiver']))) {
-    disableConducteur($_GET['id_conducteur_desactiver']);
+    disableDriver($_GET['id_conducteur_desactiver']);
     $_SESSION['status'] = 1;
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

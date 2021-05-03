@@ -57,7 +57,7 @@
                                     <div class="form-group mb-3">
                                         <?php
                                         $tab_conducteur[] = array();
-                                        $tab_conducteur = getConducteur();
+                                        $tab_conducteur = getDriver();
                                         ?>
                                         <label class="mr-sm-2" for="designation"><?php echo $driver; ?></label>
                                         <select class="form-control " id="driver" name="driver" required>

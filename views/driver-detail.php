@@ -77,7 +77,7 @@
                             <?php
                             /* Récuperation des informations d'un conducteur */
                             $tab_driver_info[0][] = array();
-                            $tab_driver_info = getConducteurById($_GET['id_conducteur']);
+                            $tab_driver_info = getDriverById($_GET['id_conducteur']);
                             $tab_driver_vehicle_info[] = array();
                             $tab_driver_vehicle_info = getVehiculeByDriverId($_GET['id_conducteur']);
                             $tab_service_quest[] = array();

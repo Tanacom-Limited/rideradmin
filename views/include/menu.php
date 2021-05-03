@@ -16,8 +16,10 @@
     <!-- User profile text-->
     <div class="profile-text">
         <h5><?php echo $tab_user_info['nom_prenom']; ?></h5>
-        <a href="../models/action.php?logout=yes" class="" data-toggle="tooltip" title="Log out"><i
+
+        <a href="../controller/action.php?logout=yes" class="" data-toggle="tooltip" title="Log out"><i
                     class="mdi mdi-power"></i></a>
+
         <div class="dropdown-menu animated flipInY">
             <!-- text-->
             <a href="#" class="dropdown-item"><i class="ti-user"></i> <?php echo $my_profile ?></a>
@@ -25,10 +27,11 @@
             <a href="#" class="dropdown-item"><i class="ti-wallet"></i> <?php echo $password ?></a>
             <div class="dropdown-divider"></div>
             <!-- text-->
-            <a href="../models/action.php?logout=yes" class="dropdown-item"><i
-                        class="fa fa-power-off"></i> <?php echo $log_out ?></a>
-            <!-- text-->
+
+            <a href="../controller/Controller.php?logout=yes" class="" data-toggle="tooltip" title="Log out"><i
+                        class="mdi mdi-power"></i></a>
         </div>
+
     </div>
 
 </div>
@@ -43,6 +46,7 @@
         <li class="nav-small-cap"><?php echo $MONITORING_THE_MOBILE ?></li>
 
         <li>
+
             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                 <i class="mdi mdi-home"></i>
                 <span class="hide-menu"><?php echo $home ?></span>
@@ -64,7 +68,7 @@
 
                 <li><a href="user.php">Admins</a></li>
 
-                <li><a href="user-list.php"><?php echo $customer ?></a></li>
+                <li><a href="customer-list.php"><?php echo $customer ?></a></li>
 
                 <li><a href="driver-list.php"><?php echo $driver ?></a></li>
 
