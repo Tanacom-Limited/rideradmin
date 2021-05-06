@@ -56,8 +56,8 @@
                                     data-target="#add-user"><i class="fa fa-plus m-r-10"></i><?php echo $add; ?>
                             </button>
 
+                            <!-- ADD USER-->
                             <div id="add-user" class="modal fade in" tabindex="-1" role="dialog"
-
                                  aria-labelledby="myModalLabel" aria-hidden="true">
 
                                 <div class="modal-dialog modal-lg">
@@ -74,7 +74,7 @@
 
                                         </div>
 
-                                        <form class="form-horizontal " action="../models/action.php" method="post">
+                                        <form class="form-horizontal " action="../controller/action.php" method="post">
 
                                             <div class="modal-body">
 
@@ -222,6 +222,7 @@
 
                             </div>
 
+                            <!-- UPDATE USER-->
                             <div id="user-mod" class="modal fade in" tabindex="-1" role="dialog"
 
                                  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -240,7 +241,7 @@
 
                                         </div>
 
-                                        <form class="form-horizontal " action="../models/action.php" method="post">
+                                        <form class="form-horizontal " action="../controller/action.php" method="post">
 
                                             <div class="modal-body">
 
@@ -314,26 +315,26 @@
                                                             </div>
 
                                                         </div>
-
-                                                        <div class="col-md-6 m-b-0">
-                                                            <div class="form-group mb-3">
-                                                                <label class="mr-sm-2" for="designation">Mot de
-                                                                    passe</label>
-                                                                <input type="password" class="form-control "
-                                                                       placeholder="" name="mdp_mod" id="mdp_mod"
-                                                                       required>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6 m-b-0">
-                                                            <div class="form-group mb-3">
-                                                                <label class="mr-sm-2" for="designation">Confirmer mot
-                                                                    de passe</label>
-                                                                <input type="password" class="form-control "
-                                                                       placeholder="" name="mdp_conf_mod"
-                                                                       id="mdp_conf_mod" required>
-                                                            </div>
-                                                        </div>
+                                                        <!---->
+                                                        <!--                                                        <div class="col-md-6 m-b-0">-->
+                                                        <!--                                                            <div class="form-group mb-3">-->
+                                                        <!--                                                                <label class="mr-sm-2" for="designation">Mot de-->
+                                                        <!--                                                                    passe</label>-->
+                                                        <!--                                                                <input type="password" class="form-control "-->
+                                                        <!--                                                                       placeholder="" name="mdp_mod" id="mdp_mod"-->
+                                                        <!--                                                                       required>-->
+                                                        <!--                                                            </div>-->
+                                                        <!--                                                        </div>-->
+                                                        <!---->
+                                                        <!--                                                        <div class="col-md-6 m-b-0">-->
+                                                        <!--                                                            <div class="form-group mb-3">-->
+                                                        <!--                                                                <label class="mr-sm-2" for="designation">Confirmer mot-->
+                                                        <!--                                                                    de passe</label>-->
+                                                        <!--                                                                <input type="password" class="form-control "-->
+                                                        <!--                                                                       placeholder="" name="mdp_conf_mod"-->
+                                                        <!--                                                                       id="mdp_conf_mod" required>-->
+                                                        <!--                                                            </div>-->
+                                                        <!--                                                        </div>-->
 
                                                         <div class="col-md-6 m-b-0">
                                                             <div class="form-group mb-3">
@@ -416,9 +417,9 @@
                                                                 <input type="hidden" value="' . $tab_user[$i]['id'] . '" name="" id="id_user_' . $i . '">
                                                                 
                                                                 <button type="button" onclick="modUser(id_user_' . $i . '.value);" class="btn btn-warning btn-sm" data-original-title="Modified" data-toggle="modal" data-target="#user-mod"><i class="fa fa-pencil"></i></button>                                                                
-                                                                <a href="../models/action.php?id_user=' . $tab_user[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
-                                                                <a href="../models/action.php?id_user_activer=' . $tab_user[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
-                                                                <a href="../models/action.php?id_user_desactiver=' . $tab_user[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
+                                                                <a href="../controller/action.php?id_user=' . $tab_user[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
+                                                                <a href="../controller/action.php?id_user_activer=' . $tab_user[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
+                                                                <a href="../controller/action.php?id_user_desactiver=' . $tab_user[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
                                                             </td>
                                                         </tr>
                                                     ';
@@ -426,6 +427,7 @@
                                     ?>
                                     </tbody>
                                 </table>
+
                             </div>
 
                         </div>
@@ -450,7 +452,7 @@
 
 <script>
 
-
+    // Call when updating users
     function modUser(id_user) {
         $.ajax({
             url: "../ajax/getUserById.php",

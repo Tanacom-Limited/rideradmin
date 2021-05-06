@@ -122,6 +122,8 @@ function getLastUser()
 
 }
 
+
+// Get users from Ajax
 function getUserById($id_user)
 {
 
@@ -140,7 +142,7 @@ function getUserById($id_user)
     } else {
         return $output = [];
     }
-    mysqli_close(DB::$conn);
+//    mysqli_close(DB::$conn);
 
 }
 

@@ -22,7 +22,7 @@ define("SITE_ADDR", $site_addr);
 define("DB_HOST", "localhost");
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_NAME', '');
+define('DB_NAME', 'rideradmin');
 
 
 define("GOOGLE_API_KEY", '');

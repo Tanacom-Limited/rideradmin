@@ -10,7 +10,7 @@
 <!-- Main wrapper - style you can find in pages.scss -->
 <section id="wrapper">
 
-    <div class="login-register" style="background-color:#ffb22b;">
+    <div class="login-register">
 
         <div class="login-box card" style="margin-top:10%; margin-bottom:0%;">
 
@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group text-center m-t-20">
                         <div class="col-xs-12">
-                            <button class="btn btn-dark btn-lg btn-block text-uppercase waves-effect waves-light"
+                            <button class="btn btn-dark btn-lg btn-block text-uppercase waves-effect waves-light color-login"
                                     type="submit"><?php echo $login ?></button>
                         </div>
                     </div>

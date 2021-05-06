@@ -11,7 +11,7 @@
     <link href="../public/css/style.css" rel="stylesheet">
     <link href="../public/css/custom.css" rel="stylesheet">
     <link href="../public/assets/plugins/toast-master/css/jquery.toast.css" rel="stylesheet">
-    <link href="../public/css/colors/green.css" id="theme" rel="stylesheet">
+    <link href="../public/css/colors/blue.css" id="theme" rel="stylesheet">
     <link href="../public/assets/plugins/morrisjs/morris.css" rel="stylesheet">
     <style>
         #map {

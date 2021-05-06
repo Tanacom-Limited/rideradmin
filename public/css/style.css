@@ -6832,15 +6832,19 @@ File: scss
       font-size: 100px;
       font-weight: 600;
       line-height: 100px; }
-  .login-register {
-    position: relative;
-    overflow: hidden; }
+
+  /*.login-register {*/
+    /*position: relative;*/
+    /*overflow: hidden; }*/
+
+
   .login-box {
     width: 90%; }
   .login-sidebar {
     padding: 10% 0; }
     .login-sidebar .login-box {
-      position: relative; }
+      position: relative;
+    }
   /*This is for chat page*/
   .chat-main-box .chat-left-aside {
     left: -250px;

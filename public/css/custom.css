@@ -1,43 +1,83 @@
-.accueil-menu-item{
-    font-size:50px;
+
+.login-register {
+    background-image: url("../assets/images/background/login_bg.jpg");
+    /*position: relative;*/
 }
-.color-info{
-    color:#028ee1;
+
+.color-login {
+    background: #e9ab2e;
 }
-.color-success{
-    color:#1eacbe;
+
+.login-register:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .5);
 }
-.color-warning{
-    color:#e9ab2e;
+
+.accueil-menu-item {
+    font-size: 50px;
 }
-.color-primary{
-    color:#6352ce;
+
+.color-info {
+    color: #028ee1;
 }
-.color-danger{
-    color:#e6294b;
+
+.color-success {
+    color: #1eacbe;
 }
-.btn-add{
+
+.color-warning {
+    color: #e9ab2e;
+}
+
+.color-primary {
+    color: #6352ce;
+}
+
+.color-danger {
+    color: #e6294b;
+}
+
+.btn-add {
     padding: 10px 10px 10px 10px;
-    font-size:16px;
+    font-size: 16px;
 }
-.style-carac{
-    background:#fff;
-    padding:10px 10px 6px 12px;
+
+.style-carac {
+    background: #fff;
+    padding: 10px 10px 6px 12px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.171);
-    margin-top:20px;
+    margin-top: 20px;
 }
-.style-carac-textaera{
-    background:#fff;
-    padding:5px;
+
+.style-carac-textaera {
+    background: #fff;
+    padding: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.171);
 }
-.style-carac-type{
+
+.style-carac-type {
     border: 1px solid #eeeeee;
     background: #eeeeee;
-    padding:10px 10px 6px 12px;
+    padding: 10px 10px 6px 12px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.171);
-    margin-top:20px;
+    margin-top: 20px;
 }
-.label-detail-title{
+
+.label-detail-title {
     font-weight: bold;
 }
+
+@media (min-width: 768px) {
+    .login-register {
+        /*position: relative;*/
+        overflow: hidden;
+    }
+}
+
+
+

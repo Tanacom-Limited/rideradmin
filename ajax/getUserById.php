@@ -1,5 +1,7 @@
 <?php
+
 require_once("../helpers/function.php");
+
 function getUserById1($id_user)
 {
     $output[] = array();
@@ -10,6 +12,8 @@ function getUserById1($id_user)
 if (isset($_POST['id_user'])) {
     getUserById1($_POST['id_user']);
 } else {
-    header('Location: 404erreur.php');
+    header('Location: login.php');
 }
+
+
 ?>

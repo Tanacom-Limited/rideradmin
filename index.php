@@ -13,10 +13,15 @@ if (DEVELOPMENT_MODE == true) {
     error_reporting(E_ALL);
 } else {
     //errors will not be displayed on the pages but log to files
-    error_reporting(E_ALL);
+    if (version_compare(PHP_VERSION, '5.3', '>=')) {
+        error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
+    } else {
+        error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_USER_NOTICE);
+    }
     ini_set('log_errors', 'On');
     ini_set('error_log', 'error.log');
     ini_set('display_errors', '0');
+
 
 }
 
