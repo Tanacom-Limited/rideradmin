@@ -38,7 +38,24 @@
         <?php
         $tab_user_info[] = array();
         $tab_user_info = $_SESSION['user_info'];
+
+        if ($tab_user_info == "") {
+
+            header('Location:login.php');
+        }
+
         ?>
+
+
+        <!-- Notification -->
+        <li class="nav-item">
+
+            <a class="nav-link  text-muted waves-effect waves-dark" href="notification.php"
+               aria-expanded="true"><img src="../public/assets/images/users/ic_notification.png"
+                                         alt="notification"
+                                         class="profile-pic"/></a>
+
+        </li>
 
         <!-- Language -->
         <li class="nav-item dropdown">
@@ -108,7 +125,9 @@
                     <li role="separator" class="divider"></li>
                     <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                    <li><a href="notification.php"><i class="ti-bell"></i> Notification</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="settings.php"><i class="ti-settings"></i> Account Setting</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="../controller/action.php?logout=yes"><i
                                     class="fa fa-power-off"></i> <?php echo $log_out; ?>

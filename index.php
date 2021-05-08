@@ -32,13 +32,9 @@ if (!empty(DEFAULT_TIMEZONE)) {
 
 if (!isset($_SESSION['user_info']) && count($_SESSION['user_info']) == 0) {
 
-    header('Location:views/login.php');
+    header('Location:views/index.php');
 
 } else {
-    $tab_infos_user = $_SESSION['user_info'];
-
-    $id_user = $tab_infos_user['id'];
-
     header('Location:views/home.php');
 }
 

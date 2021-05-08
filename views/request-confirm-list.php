@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -29,9 +29,13 @@
     <div class="page-wrapper">
         <!-- Bread crumb and right sidebar toggle -->
         <div class="row page-titles">
+
+
             <div class="col-md-5 align-self-center">
                 <h3 class="text-themecolor"><?php echo $request; ?></h3>
             </div>
+
+
             <div class="col-md-7 align-self-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="home.php"><?php echo $home; ?></a></li>
@@ -39,9 +43,7 @@
                     <li class="breadcrumb-item active"><?php echo $request; ?></li>
                 </ol>
             </div>
-            <div>
-                <!-- <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button> -->
-            </div>
+
         </div>
 
         <!-- Container fluid  -->
@@ -51,8 +53,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+
                             <h4 class="card-title"><?php echo $request; ?></h4>
-                            <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
+
+
                             <div class="table-responsive m-t-10">
                                 <?php
                                 $tab_requete[] = array();
@@ -65,6 +69,7 @@
                                        cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
+                                        <th>N°</th>
                                         <th><?php echo $payment; ?></th>
                                         <th width="5%"><?php echo $method; ?></th>
                                         <th><?php echo $customer; ?></th>
@@ -79,7 +84,7 @@
                                         <!-- <th>Race status</th> -->
                                         <th><?php echo $created; ?></th>
                                         <th><?php echo $modified; ?></th>
-                                        <th><?php echo $actions; ?></th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -100,7 +105,7 @@
                                             $statut_pay = 'Not paid';
                                         }
                                         echo '">' . $statut_pay . '</span></td>
-                                                            <td width="5%"><img src="assets/images/payment_method/' . $tab_requete[$i]['payment_image'] . '" alt="" width="100%"></td>
+                                                            <td width="5%"><img src="../public/assets/images/payment_method/' . $tab_requete[$i]['payment_image'] . '" alt="" width="100%"></td>
                                                             <td>' . $tab_requete[$i]['nom'] . ' ' . $tab_requete[$i]['prenom'] . '</td>
                                                             <td>' . $tab_requete[$i]['nomDriver'] . ' ' . $tab_requete[$i]['prenomDriver'] . '</td>
                                                             <td>' . $tab_requete[$i]['depart_name'] . '</td>
@@ -111,15 +116,9 @@
                                                             <td><span class="badge badge-warning">' . $tab_requete[$i]['statut'] . '</span></td>
                                                             <td>' . $tab_requete[$i]['creer'] . '</td>
                                                             <td>' . $tab_requete[$i]['modifier'] . '</td>
-                                                            <td>
-                                                            </td>
+                                                           
                                                         </tr>
                                                     ';
-                                        // <input type="hidden" value="'.$tab_requete[$i]['id'].'" name="" id="id_affectation_'.$i.'">
-                                        // <a href="query/action.php?id_affectation='.$tab_requete[$i]['id'].'" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
-                                        // <a href="query/action.php?id_affectation_activer='.$tab_requete[$i]['id'].'" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
-                                        // <a href="query/action.php?id_affectation_desactiver='.$tab_requete[$i]['id'].'" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
-                                        // <button type="button" onclick="modAnnee(id_affectation_'.$i.'.value);" class="btn btn-warning btn-sm" data-original-title="Modifier" data-toggle="modal" data-target="#annee-mod"><i class="fa fa-pencil"></i></button>
                                     }
                                     ?>
                                     </tbody>
@@ -129,86 +128,7 @@
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- End PAge Content -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Right sidebar -->
-            <!-- ============================================================== -->
-            <!-- .right-sidebar -->
-            <div class="right-sidebar">
-                <div class="slimscrollright">
-                    <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span>
-                    </div>
-                    <div class="r-panel-body">
-                        <ul id="themecolors" class="m-t-20">
-                            <li><b>With Light sidebar</b></li>
-                            <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
-                            <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
-                            <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
-                            <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme working">4</a></li>
-                            <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
-                            <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
-                            <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
-                            <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a>
-                            </li>
-                            <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
-                            <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
-                            <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
-                            <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a>
-                            </li>
-                            <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a>
-                            </li>
-                        </ul>
-                        <ul class="m-t-20 chatonline">
-                            <li><b>Chat option</b></li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/1.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Varun Dhavan <small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/2.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Genelia Deshmukh <small
-                                                class="text-warning">Away</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/3.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Ritesh Deshmukh <small
-                                                class="text-danger">Busy</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/4.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Arijit Sinh <small
-                                                class="text-muted">Offline</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/5.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Govinda Star <small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/6.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>John Abraham<small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/7.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Hritik Roshan<small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/8.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Pwandeep rajan <small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Right sidebar -->
-            <!-- ============================================================== -->
+
         </div>
 
         <!-- footer -->
@@ -216,32 +136,10 @@
 
     </div>
 
-    <!-- End Page wrapper  -->
-
 </div>
-
 
 <!--Include footer script-->
 <?php include("include/footer-script.php"); ?>
-s
-<script>
-    function modAnnee(id_annee) {
-        $.ajax({
-            url: "query/ajax/getAnneeById.php",
-            type: "POST",
-            data: {"id_annee": id_annee},
-            success: function (data) {
-                $("#id_annee_mod").empty();
-                $("#libelle_annee_mod").empty();
-
-                var data_parse = JSON.parse(data);
-
-                $("#id_annee_mod").val(data_parse[0].id);
-                $("#libelle_annee_mod").val(data_parse[0].libelle);
-            }
-        });
-    }
-</script>
 
 
 </body>

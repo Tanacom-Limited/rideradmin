@@ -43,8 +43,6 @@
 
         <li class="nav-devider"></li>
 
-        <li class="nav-small-cap"><?php echo $MONITORING_THE_MOBILE ?></li>
-
         <li>
 
             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
@@ -66,13 +64,11 @@
 
             <ul aria-expanded="false" class="collapse">
 
-                <li><a href="user.php">Admins</a></li>
+                <li><a href="user.php"><?php echo $admin ?></a></li>
 
                 <li><a href="customer-list.php"><?php echo $customer ?></a></li>
 
                 <li><a href="driver-list.php"><?php echo $driver ?></a></li>
-
-                <li><a href="notification.php"><?php echo $notification ?></a></li>
 
                 <!--                <li><a href="commentaire-avis.php">Commentaire & Avis</a></li>-->
 
@@ -91,8 +87,6 @@
             </ul>
         </li>
 
-        <li class="nav-small-cap"><?php echo $PARAMETER_OF_MOBILE ?></li>
-
         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
                         class="mdi mdi-settings-box"></i><span class="hide-menu"><?php echo $codification ?></span></a>
             <ul aria-expanded="false" class="collapse">
@@ -109,7 +103,6 @@
                 <li><a href="request-confirm-list.php"><?php echo $confirmed ?></a></li>
                 <li><a href="request-onride-list.php"><?php echo $on_ride ?></a></li>
                 <li><a href="request-completed-list.php"><?php echo $completed ?></a></li>
-                <!--                <li><a href="reservation.php">Reservation</a></li>-->
                 <li><a href="request-cancelled-list.php"><?php echo $canceled_reject ?></a></li>
             </ul>
         </li>
@@ -124,9 +117,13 @@
             </ul>
         </li>
 
+
+        <li class="nav-small-cap"><?php echo $admin_tools ?></li>
+
+
         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                 <i class="mdi mdi-settings"></i>
-                <span class="hide-menu"><?php echo $admin_tools ?></span>
+                <span class="hide-menu">All Settings</span>
             </a>
             <ul aria-expanded="false" class="collapse">
 
@@ -140,8 +137,16 @@
 
                 <li><a href="settings.php"><?php echo $settings ?></a></li>
 
+                <li><a href=""></a></li>
+
+                <li><a href=""></a></li>
+
+                <li><a href=""></a></li>
+
+
             </ul>
         </li>
 
     </ul>
+
 </nav>

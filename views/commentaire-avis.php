@@ -130,9 +130,9 @@
                                                                     <td>
                                                                         <input type="hidden" value="' . $tab_commentaire[$i]['id'] . '" name="" id="id_affectation_' . $i . '">
                                                                         <button type="button" onclick="modAnnee(id_affectation_' . $i . '.value);" class="btn btn-warning btn-sm" data-original-title="Modifier" data-toggle="modal" data-target="#annee-mod"><i class="fa fa-pencil"></i></button>
-                                                                        <a href="../query/action.php?id_affectation=' . $tab_commentaire[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Supprimer"> <i class="fa fa-trash"></i> </a>
-                                                                        <a href="../query/action.php?id_affectation_activer=' . $tab_commentaire[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
-                                                                        <a href="../query/action.php?id_affectation_desactiver=' . $tab_commentaire[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
+//                                                                        <a href="../query/action.php?id_affectation=' . $tab_commentaire[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Supprimer"> <i class="fa fa-trash"></i> </a>
+//                                                                        <a href="../query/action.php?id_affectation_activer=' . $tab_commentaire[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
+//                                                                        <a href="../query/action.php?id_affectation_desactiver=' . $tab_commentaire[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
                                                                     </td>
                                                                 </tr>
                                                             ';

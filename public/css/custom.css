@@ -4,10 +4,6 @@
     /*position: relative;*/
 }
 
-.color-login {
-    background: #e9ab2e;
-}
-
 .login-register:before {
     content: "";
     position: absolute;
@@ -16,6 +12,31 @@
     top: 0;
     bottom: 0;
     background: rgba(0, 0, 0, .5);
+}
+
+.land-page {
+    background-image: url("https://source.unsplash.com/user/c_v_r");
+    /*position: relative;*/
+}
+
+.land-page:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .5);
+}
+
+.color-login {
+    background: #e9ab2e;
+    color: white;
+}
+
+.color-login:hover {
+    /*color: #e9ab2e;*/
+    background-color: #028ee1;
 }
 
 .accueil-menu-item {
@@ -77,6 +98,12 @@
         /*position: relative;*/
         overflow: hidden;
     }
+
+    .land-page {
+        /*position: relative;*/
+        overflow: hidden;
+    }
+
 }
 
 

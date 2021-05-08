@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -51,8 +51,10 @@
                         <div class="card-body">
                             <h4 class="card-title"><?php echo $settings ?></h4>
 
-                            <form class="form-horizontal " action="../models/action.php" method="post"
+                            <form class="form-horizontal " action="../controller/action.php" method="post"
                                   enctype="multipart/form-data">
+
+
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <?php
@@ -68,9 +70,7 @@
                                                            name="setting_title" id="setting_title"
                                                            value='<?php if (count($tab_settings) != 0) echo $tab_settings[0]['title'] ?>'
                                                            required>
-                                                    <div class="invalid-feedback">
-                                                        Désolé, entrez l'intitulé de la catégorie de devis
-                                                    </div>
+
                                                 </div>
                                             </div>
                                             <div class="col-md-4 m-b-0">
@@ -81,9 +81,6 @@
                                                            name="setting_footer" id="setting_footer"
                                                            value='<?php if (count($tab_settings) != 0) echo $tab_settings[0]['footer'] ?>'
                                                            required>
-                                                    <div class="invalid-feedback">
-                                                        Désolé, entrez l'intitulé de la catégorie de devis
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 m-b-0">
@@ -94,23 +91,26 @@
                                                            name="setting_email" id="setting_email" readonly
                                                            value='<?php if (count($tab_settings) != 0) echo $tab_settings[0]['email'] ?>'
                                                            required>
-                                                    <div class="invalid-feedback">
-                                                        Désolé, entrez l'intitulé de la catégorie de devis
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-dark waves-effect"><?php echo $save ?></button>
                                     <button type="button" class="btn btn-default waves-effect"
                                             data-dismiss="modal"><?php echo $cancel ?></button>
                                 </div>
+
                             </form>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
 
         </div>
@@ -129,7 +129,7 @@
 <script>
     function modTypeVehicule(id_type) {
         $.ajax({
-            url: "query/ajax/getTypeVehiculeById.php",
+            url: "../controller/getTypeVehiculeById.php",
             type: "POST",
             data: {"id_type": id_type},
             success: function (data) {

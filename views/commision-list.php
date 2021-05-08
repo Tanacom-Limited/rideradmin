@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -30,9 +30,11 @@
     <div class="page-wrapper">
         <!-- Bread crumb and right sidebar toggle -->
         <div class="row page-titles">
+
             <div class="col-md-5 align-self-center">
                 <h3 class="text-themecolor"><?php echo $commission; ?></h3>
             </div>
+
             <div class="col-md-7 align-self-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="home.php"><?php echo $home; ?></a></li>
@@ -67,16 +69,24 @@
                                  aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content bg-gris">
+
                                         <div class="modal-header">
+
                                             <h4 class="modal-title"
                                                 id="myModalLabel"><?php echo $add_a_commission; ?></h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                                 ×
                                             </button>
                                         </div>
-                                        <form class="form-horizontal " action="../models/action.php" method="post">
+
+                                        <form class="form-horizontal " action="../controller/action.php" method="post">
+
                                             <div class="modal-body">
+
+
                                                 <div class="form-group">
+
+
                                                     <div class="row">
                                                         <div class="col-md-4 m-b-0">
                                                             <div class="form-group mb-3">
@@ -85,11 +95,10 @@
                                                                 <input type="text" class="form-control " placeholder=""
                                                                        name="libelle_commission_perc"
                                                                        id="libelle_commission_perc" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
                                                         </div>
+
+
                                                         <div class="col-md-4 m-b-0">
                                                             <div class="form-group mb-3">
                                                                 <label class="mr-sm-2"
@@ -98,11 +107,9 @@
                                                                        max="0.99" class="form-control " placeholder=""
                                                                        name="value_commission_perc"
                                                                        id="value_commission_perc" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
                                                         </div>
+
                                                         <div class="col-md-4 m-b-0">
                                                             <div class="form-group mb-3">
                                                                 <label class="mr-sm-2"
@@ -116,33 +123,44 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+
                                                     </div>
+
                                                 </div>
+
                                             </div>
+
                                             <div class="modal-footer">
                                                 <button type="submit"
                                                         class="btn btn-dark waves-effect"><?php echo $save; ?></button>
                                                 <button type="button" class="btn btn-default waves-effect"
                                                         data-dismiss="modal"><?php echo $cancel; ?></button>
                                             </div>
+
                                         </form>
                                     </div>
-                                    <!-- /.modal-content -->
+
                                 </div>
-                                <!-- /.modal-dialog -->
+
+
                             </div>
                             <div id="commission-mod-perc" class="modal fade in" tabindex="-1" role="dialog"
                                  aria-labelledby="myModalLabel" aria-hidden="true">
+
                                 <div class="modal-dialog modal-lg">
+
                                     <div class="modal-content bg-gris">
                                         <div class="modal-header">
+
                                             <h4 class="modal-title"
                                                 id="myModalLabel"><?php echo $modify_a_commision; ?></h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                                 ×
                                             </button>
                                         </div>
-                                        <form class="form-horizontal " action="../models/action.php" method="post">
+
+
+                                        <form class="form-horizontal " action="../controller/action.php" method="post">
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <div class="row">
@@ -200,6 +218,7 @@
                                         </form>
                                     </div>
 
+
                                 </div>
 
                             </div>
@@ -244,14 +263,13 @@
                                                             <td>
                                                                 <input type="hidden" value="' . $tab_commission[$i]['id'] . '" name="" id="id_commission_perc_' . $i . '">
                                                                 <button type="button" onclick="modCommissionPerc(id_commission_perc_' . $i . '.value);" class="btn btn-warning btn-sm" data-original-title="Modifiy" data-toggle="modal" data-target="#commission-mod-perc"><i class="fa fa-pencil"></i></button>
-                                                                <a href="query/action.php?id_commission_activer=' . $tab_commission[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
+                                                                <a href="../controller/action.php?id_commission_activer=' . $tab_commission[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
                                                             </td>
                                                         </tr>
                                                     ';
                                     }
                                     ?>
-                                    <!-- <a href="query/action.php?id_commission_desactiver='.$tab_commission[$i]['id'].'" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a> -->
-                                    <!-- <a href="query/action.php?id_commission='.$tab_commission[$i]['id'].'" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a> -->
+
                                     </tbody>
                                 </table>
                             </div>
@@ -263,8 +281,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title"><?php echo $fixed_commission; ?></h4>
-                            <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
-                            <!-- <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#add-commission"><i class="fa fa-plus m-r-10"></i>Add</button> -->
+
                             <div id="add-commission" class="modal fade in" tabindex="-1" role="dialog"
                                  aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
@@ -276,7 +293,7 @@
                                                 ×
                                             </button>
                                         </div>
-                                        <form class="form-horizontal " action="../models/action.php" method="post">
+                                        <form class="form-horizontal " action="../controller/action.php" method="post">
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <div class="row">
@@ -287,9 +304,6 @@
                                                                 <input type="text" class="form-control " placeholder=""
                                                                        name="libelle_commission" id="libelle_commission"
                                                                        required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4 m-b-0">
@@ -299,9 +313,6 @@
                                                                 <input type="number" class="form-control "
                                                                        placeholder="" min="1" name="value_commission"
                                                                        id="value_commission" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4 m-b-0">
@@ -341,7 +352,7 @@
                                                 ×
                                             </button>
                                         </div>
-                                        <form class="form-horizontal " action="../models/action.php" method="post">
+                                        <form class="form-horizontal " action="../controller/action.php" method="post">
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <div class="row">
@@ -354,9 +365,6 @@
                                                                 <input type="text" class="form-control " placeholder=""
                                                                        name="libelle_commission_mod"
                                                                        id="libelle_commission_mod" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4 m-b-0">
@@ -366,9 +374,7 @@
                                                                 <input type="number" class="form-control" placeholder=""
                                                                        min="1" name="value_commission_mod"
                                                                        id="value_commission_mod" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
+
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4 m-b-0">
@@ -439,8 +445,8 @@
                                                             <td>
                                                                 <input type="hidden" value="' . $tab_commission[$i]['id'] . '" name="" id="id_commission_' . $i . '">
                                                                 <button type="button" onclick="modCommission(id_commission_' . $i . '.value);" class="btn btn-warning btn-sm" data-original-title="Modifiy" data-toggle="modal" data-target="#commission-mod"><i class="fa fa-pencil"></i></button>
-                                                                <a href="query/action.php?id_commission_activer=' . $tab_commission[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
-                                                                <a href="query/action.php?id_commission_desactiver=' . $tab_commission[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
+                                                                <a href="../controller/action.php?id_commission_activer=' . $tab_commission[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
+                                                                <a href="../controller/action.php?id_commission_desactiver=' . $tab_commission[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
                                                             </td>
                                                         </tr>
                                                     ';
@@ -469,9 +475,10 @@
 <?php include("include/footer-script.php"); ?>
 
 <script>
+
     function modCommission(id_commission) {
         $.ajax({
-            url: "query/ajax/getCommissionById.php",
+            url: "../controller/getCommissionById.php",
             type: "POST",
             data: {"id_commission": id_commission},
             success: function (data) {
@@ -491,7 +498,7 @@
 
     function modCommissionPerc(id_commission) {
         $.ajax({
-            url: "query/ajax/getCommissionById.php",
+            url: "../controller/getCommissionById.php",
             type: "POST",
             data: {"id_commission": id_commission},
             success: function (data) {
@@ -508,6 +515,8 @@
             }
         });
     }
+
+
 </script>
 
 </body>

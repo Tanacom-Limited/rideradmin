@@ -4,7 +4,7 @@
 
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -76,10 +76,8 @@
 
                                         </div>
 
-
                                         <form class="form-horizontal " action="../helpers/send_notification.php"
                                               method="post">
-
 
                                             <div class="modal-body">
 
@@ -89,16 +87,16 @@
 
                                                         <input type="hidden" name="id_user"
                                                                value="<?php echo $id_user; ?>">
+
                                                         <div class="col-md-12 m-b-0">
 
                                                             <div class="form-group mb-3">
                                                                 <label class="mr-sm-2"
                                                                        for="designation"><?php echo $title; ?></label>
+
+
                                                                 <input type="text" class="form-control " placeholder=""
                                                                        value="" name="titre_notification" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
 
                                                         </div>
@@ -110,9 +108,6 @@
                                                                        for="designation"><?php echo $message; ?></label>
                                                                 <textarea name="msg_notification" class="form-control"
                                                                           id="" cols="30" rows="10" required></textarea>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
 
                                                         </div>
@@ -132,8 +127,8 @@
                                                         data-dismiss="modal"><?php echo $cancel; ?></button>
 
                                             </div>
-                                        </form>
 
+                                        </form>
 
                                     </div>
 
@@ -161,6 +156,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+
                                     <?php
                                     for ($i = 0; $i < count($tab_notification); $i++) {
                                         echo '
@@ -171,12 +167,14 @@
                                                             <td>' . $tab_notification[$i]['creer'] . '</td>
                                                             <td>' . $tab_notification[$i]['modifier'] . '</td>
                                                             <td>
-                                                                <a href="../query/action.php?id_notification=' . $tab_notification[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
+                                                                <a href="../controller/action.php?id_notification=' . $tab_notification[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
                                                             </td>
                                                         </tr>
                                                     ';
                                     }
                                     ?>
+
+
                                     </tbody>
                                 </table>
 

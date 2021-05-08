@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -70,7 +70,9 @@
                                                 ×
                                             </button>
                                         </div>
-                                        <form class="form-horizontal " action="../models/action.php" method="post">
+
+
+                                        <form class="form-horizontal " action="../controller/action.php" method="post">
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <div class="row">
@@ -80,9 +82,7 @@
                                                                        for="designation"><?php echo $name; ?></label>
                                                                 <input type="text" class="form-control " placeholder=""
                                                                        name="libelle_currency" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
+
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12 m-b-0">
@@ -91,9 +91,6 @@
                                                                        for="designation"><?php echo $symbol; ?></label>
                                                                 <input type="text" class="form-control " placeholder=""
                                                                        name="symbole_currency" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -114,8 +111,11 @@
 
                             <div id="currency-mod" class="modal fade in" tabindex="-1" role="dialog"
                                  aria-labelledby="myModalLabel" aria-hidden="true">
+
                                 <div class="modal-dialog modal-lg">
+
                                     <div class="modal-content bg-gris">
+
                                         <div class="modal-header">
                                             <h4 class="modal-title"
                                                 id="myModalLabel"><?php echo $modify_a_currency; ?></h4>
@@ -123,7 +123,8 @@
                                                 ×
                                             </button>
                                         </div>
-                                        <form class="form-horizontal " action="../models/action.php" method="post">
+
+                                        <form class="form-horizontal " action="../controller/action.php" method="post">
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <div class="row">
@@ -136,9 +137,7 @@
                                                                 <input type="text" class="form-control " placeholder=""
                                                                        name="libelle_currency_mod"
                                                                        id="libelle_currency_mod" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
+
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12 m-b-0">
@@ -148,9 +147,6 @@
                                                                 <input type="text" class="form-control " placeholder=""
                                                                        name="symbole_currency_mod"
                                                                        id="symbole_currency_mod" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -163,6 +159,7 @@
                                                         data-dismiss="modal"><?php echo $cancel; ?></button>
                                             </div>
                                         </form>
+
                                     </div>
 
                                 </div>
@@ -177,7 +174,9 @@
                                        class="display nowrap table table-hover table-striped table-bordered"
                                        cellspacing="0" width="100%">
                                     <thead>
+
                                     <tr>
+
                                         <th>N°</th>
                                         <th><?php echo $name; ?></th>
                                         <th><?php echo $symbol; ?></th>
@@ -186,8 +185,11 @@
                                         <th><?php echo $modified; ?></th>
                                         <th><?php echo $actions; ?></th>
                                     </tr>
+
                                     </thead>
+
                                     <tbody>
+
                                     <?php
                                     for ($i = 0; $i < count($tab_currency); $i++) {
                                         echo '
@@ -205,21 +207,29 @@
                                                             <td>' . $tab_currency[$i]['creer'] . '</td>
                                                             <td>' . $tab_currency[$i]['modifier'] . '</td>
                                                             <td>
-                                                                <a href="../query/action.php?id_currency_activer=' . $tab_currency[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
+                                                                <a href="../controller/action.php?id_currency_activer=' . $tab_currency[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
+                                                                
+                                                                
+                                                                                           <input type="hidden" value="' . $tab_currency[$i]['id'] . '" name="" id="id_currency_' . $i . '">
+                                    <button type="button" onclick="modCurrency(id_currency_' . $i . '.value);" class="btn btn-warning btn-sm" data-original-title="Modifiy" data-toggle="modal" data-target="#currency-mod"><i class="fa fa-pencil"></i></button>
+                                    <a href="../controller/action.php?id_currency=' . $tab_currency[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a> 
+                                                                
                                                             </td>
                                                         </tr>
                                                     ';
                                     }
                                     ?>
-                                    <!-- <input type="hidden" value="'.$tab_currency[$i]['id'].'" name="" id="id_currency_'.$i.'">
-                                    <button type="button" onclick="modCurrency(id_currency_'.$i.'.value);" class="btn btn-warning btn-sm" data-original-title="Modifiy" data-toggle="modal" data-target="#currency-mod"><i class="fa fa-pencil"></i></button>
-                                    <a href="query/action.php?id_currency='.$tab_currency[$i]['id'].'" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a> -->
+
                                     </tbody>
                                 </table>
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
 
         </div>
@@ -237,7 +247,7 @@
 <script>
     function modCurrency(id_currency) {
         $.ajax({
-            url: "query/ajax/getCurrencyById.php",
+            url: "../controller/getCurrencyById.php",
             type: "POST",
             data: {"id_currency": id_currency},
             success: function (data) {

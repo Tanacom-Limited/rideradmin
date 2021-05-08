@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -46,8 +46,10 @@
 
         <!-- Container fluid  -->
         <div class="container-fluid">
+
             <!-- Start Page Content -->
             <div class="row">
+
                 <!-- column -->
                 <div class="col-lg-12">
                     <div class="card">
@@ -110,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- column -->
+
                 <!-- column -->
                 <div class="col-lg-12">
                     <div class="card">
@@ -134,7 +136,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- column -->
             </div>
 
         </div>
@@ -150,29 +151,13 @@
 <?php include("include/footer-script.php"); ?>
 
 <script>
-    function modAnnee(id_annee) {
-        $.ajax({
-            url: "query/ajax/getAnneeById.php",
-            type: "POST",
-            data: {"id_annee": id_annee},
-            success: function (data) {
-                $("#id_annee_mod").empty();
-                $("#libelle_annee_mod").empty();
-
-                var data_parse = JSON.parse(data);
-
-                $("#id_annee_mod").val(data_parse[0].id);
-                $("#libelle_annee_mod").val(data_parse[0].libelle);
-            }
-        });
-    }
 
     apply($("#driver").val(), $("#month").val(), $("#year").val());
 
     function apply(id_driver, month, year) {
         $("#loader").css("display", "block");
         $.ajax({
-            url: "query/ajax/getDriverStats.php",
+            url: "../controller/getDriverStats.php",
             type: "POST",
             data: {"id_driver": id_driver, "month": month, "year": year},
             success: function (data) {

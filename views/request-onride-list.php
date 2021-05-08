@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -26,6 +26,7 @@
     </aside>
     <!-- Page wrapper  -->
     <div class="page-wrapper">
+
         <!-- Bread crumb and right sidebar toggle -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
@@ -37,9 +38,6 @@
                     <li class="breadcrumb-item"><?php echo $taxi_booking; ?></li>
                     <li class="breadcrumb-item active"><?php echo $request; ?></li>
                 </ol>
-            </div>
-            <div>
-                <!-- <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button> -->
             </div>
         </div>
 
@@ -64,6 +62,7 @@
                                        cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
+                                        <th>N°</th>
                                         <th><?php echo $payment; ?></th>
                                         <th width="5%"><?php echo $method; ?></th>
                                         <th><?php echo $customer; ?></th>
@@ -99,7 +98,7 @@
                                             $statut_pay = 'Not paid';
                                         }
                                         echo '">' . $statut_pay . '</span></td>
-                                                            <td width="5%"><img src="assets/images/payment_method/' . $tab_requete[$i]['payment_image'] . '" alt="" width="100%"></td>
+                                                            <td width="5%"><img src="../public/assets/images/payment_method/' . $tab_requete[$i]['payment_image'] . '" alt="" width="100%"></td>
                                                             <td>' . $tab_requete[$i]['nom'] . ' ' . $tab_requete[$i]['prenom'] . '</td>
                                                             <td>' . $tab_requete[$i]['nomDriver'] . ' ' . $tab_requete[$i]['prenomDriver'] . '</td>
                                                             <td>' . $tab_requete[$i]['depart_name'] . '</td>
@@ -114,11 +113,7 @@
                                                             </td>
                                                         </tr>
                                                     ';
-                                        // <input type="hidden" value="'.$tab_requete[$i]['id'].'" name="" id="id_affectation_'.$i.'">
-                                        // <a href="query/action.php?id_affectation='.$tab_requete[$i]['id'].'" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
-                                        // <a href="query/action.php?id_affectation_activer='.$tab_requete[$i]['id'].'" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
-                                        // <a href="query/action.php?id_affectation_desactiver='.$tab_requete[$i]['id'].'" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
-                                        // <button type="button" onclick="modAnnee(id_affectation_'.$i.'.value);" class="btn btn-warning btn-sm" data-original-title="Modifier" data-toggle="modal" data-target="#annee-mod"><i class="fa fa-pencil"></i></button>
+
                                     }
                                     ?>
                                     </tbody>
@@ -128,86 +123,7 @@
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- End PAge Content -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Right sidebar -->
-            <!-- ============================================================== -->
-            <!-- .right-sidebar -->
-            <div class="right-sidebar">
-                <div class="slimscrollright">
-                    <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span>
-                    </div>
-                    <div class="r-panel-body">
-                        <ul id="themecolors" class="m-t-20">
-                            <li><b>With Light sidebar</b></li>
-                            <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
-                            <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
-                            <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
-                            <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme working">4</a></li>
-                            <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
-                            <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
-                            <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
-                            <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a>
-                            </li>
-                            <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
-                            <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
-                            <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
-                            <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a>
-                            </li>
-                            <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a>
-                            </li>
-                        </ul>
-                        <ul class="m-t-20 chatonline">
-                            <li><b>Chat option</b></li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/1.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Varun Dhavan <small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/2.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Genelia Deshmukh <small
-                                                class="text-warning">Away</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/3.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Ritesh Deshmukh <small
-                                                class="text-danger">Busy</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/4.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Arijit Sinh <small
-                                                class="text-muted">Offline</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/5.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Govinda Star <small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/6.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>John Abraham<small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/7.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Hritik Roshan<small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/8.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Pwandeep rajan <small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Right sidebar -->
-            <!-- ============================================================== -->
+
         </div>
 
         <!-- footer -->
@@ -216,118 +132,10 @@
     <!-- End Page wrapper  -->
 </div>
 
-<!-- All Jquery -->
-<script src="../assets/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap tether Core JavaScript -->
-<script src="../assets/plugins/bootstrap/js/popper.min.js"></script>
 
-<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<!-- slimscrollbar scrollbar JavaScript -->
-<script src="../js/jquery.slimscroll.js"></script>
-<!--Wave Effects -->
-<script src="../js/waves.js"></script>
-<!--Menu sidebar -->
-<script src="../js/sidebarmenu.js"></script>
-<!--stickey kit -->
-<script src="../assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
-<script src="../assets/plugins/sparkline/jquery.sparkline.min.js"></script>
-<!--Custom JavaScript -->
-<script src="../js/custom.min.js"></script>
-<!-- This is data table -->
-<script src="../assets/plugins/datatables/jquery.dataTables.min.js"></script>
-<!-- start - This is for export functionality only -->
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-<!-- end - This is for export functionality only -->
-<script>
-    $(document).ready(function () {
-        $('#myTable').DataTable();
-        $(document).ready(function () {
-            var table = $('#example').DataTable({
-                "columnDefs": [{
-                    "visible": false,
-                    "targets": 2
-                }],
-                "order": [
-                    [2, 'asc']
-                ],
-                "displayLength": 25,
-                "drawCallback": function (settings) {
-                    var api = this.api();
-                    var rows = api.rows({
-                        page: 'current'
-                    }).nodes();
-                    var last = null;
-                    api.column(2, {
-                        page: 'current'
-                    }).data().each(function (group, i) {
-                        if (last !== group) {
-                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                            last = group;
-                        }
-                    });
-                }
-            });
-            // Order by the grouping
-            $('#example tbody').on('click', 'tr.group', function () {
-                var currentOrder = table.order()[0];
-                if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-                    table.order([2, 'desc']).draw();
-                } else {
-                    table.order([2, 'asc']).draw();
-                }
-            });
-        });
-    });
-    $('#example24').DataTable();
-</script>
-<!-- Style switcher -->
-<script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
-<script>
-    function modAnnee(id_annee) {
-        $.ajax({
-            url: "query/ajax/getAnneeById.php",
-            type: "POST",
-            data: {"id_annee": id_annee},
-            success: function (data) {
-                $("#id_annee_mod").empty();
-                $("#libelle_annee_mod").empty();
+<!--Include footer script-->
+<?php include("include/footer-script.php"); ?>
 
-                var data_parse = JSON.parse(data);
-
-                $("#id_annee_mod").val(data_parse[0].id);
-                $("#libelle_annee_mod").val(data_parse[0].libelle);
-            }
-        });
-    }
-</script>
-
-
-<!--Custom JavaScript -->
-<!-- <script src="js/custom.min.js"></script> -->
-<script src="../assets/plugins/toast-master/js/jquery.toast.js"></script>
-<script src="../js/toastr.js"></script>
-<!-- Custom Theme JavaScript -->
-
-<?php if (isset($_SESSION['status']) && $_SESSION['status'] == 1) { ?>
-    <script>
-        showSuccess();
-    </script>
-<?php }else if (isset($_SESSION['status']) && $_SESSION['status'] == 2){ ?>
-    <script>
-        showFailed();
-    </script>
-<?php }else if (isset($_SESSION['status']) && $_SESSION['status'] == 3){ ?>
-    <script>
-        showWarningIncorrect();
-    </script>
-<?php }
-unset($_SESSION['status']); ?>
 </body>
 
 </html>

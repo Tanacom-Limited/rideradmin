@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
-
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -56,7 +55,6 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title"><?php echo $customers_list ?></h4>
-                            <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
                             <div class="table-responsive m-t-10">
                                 <?php
                                 $tab_user_app[] = array();
@@ -123,15 +121,12 @@
                                                             <td>' . $tab_user_app[$i]['modifier'] . '</td>
                                                             <td>
                                                                 <input type="hidden" value="' . $tab_user_app[$i]['id'] . '" name="" id="id_affectation_' . $i . '">
-                                                                <a href="../query/action.php?id_user_app_activer=' . $tab_user_app[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Enable"> <i class="fa fa-check"></i> </a>
-                                                                
-                                                                
-                                                                 <button type="button" onclick="modAnnee(id_affectation_' . $i . '.value);" class="btn btn-warning btn-sm" data-original-title="Modifier" data-toggle="modal" data-target="#annee-mod"><i class="fa fa-pencil"></i></button>
-                                                                
-                                                                 <a href="../query/action.php?id_user_app=' . $tab_user_app[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
+                                                                <a href="../controller/action.php?id_user_app_activer=' . $tab_user_app[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Enable"> <i class="fa fa-check"></i> </a>
+
+                                                                 <a href="../controller/action.php?id_user_app=' . $tab_user_app[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
                                                                 
                                      
-                                                                  <a href="../query/action.php?id_user_app_desactiver=' . $tab_user_app[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Disable"> <i class="fa fa-close"></i> </a>
+                                                                  <a href="../controller/action.php?id_user_app_desactiver=' . $tab_user_app[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Disable"> <i class="fa fa-close"></i> </a>
                                                                 
                                                             </td>
                                                         </tr>
@@ -162,26 +157,6 @@
 
 <!--Include footer script-->
 <?php include("include/footer-script.php"); ?>
-
-
-<script>
-    function modAnnee(id_annee) {
-        $.ajax({
-            url: "../query/ajax/getAnneeById.php",
-            type: "POST",
-            data: {"id_annee": id_annee},
-            success: function (data) {
-                $("#id_annee_mod").empty();
-                $("#libelle_annee_mod").empty();
-
-                var data_parse = JSON.parse(data);
-
-                $("#id_annee_mod").val(data_parse[0].id);
-                $("#libelle_annee_mod").val(data_parse[0].libelle);
-            }
-        });
-    }
-</script>
 
 
 </body>

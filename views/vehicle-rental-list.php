@@ -1,10 +1,9 @@
 <?php include("include/checker.php"); ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -49,27 +48,44 @@
 
             <!-- Start Page Content -->
             <div class="row">
+
                 <div class="col-12">
+
                     <div class="card">
+
                         <div class="card-body">
+
                             <h4 class="card-title"><?php echo $list_of_vehicles ?></h4>
+
                             <button type="button" class="btn btn-dark btn-sm" data-toggle="modal"
                                     data-target="#add-vehicule"><i class="fa fa-plus m-r-10"></i><?php echo $add ?>
                             </button>
+
                             <div id="add-vehicule" class="modal fade in" tabindex="-1" role="dialog"
                                  aria-labelledby="myModalLabel" aria-hidden="true">
+
                                 <div class="modal-dialog modal-lg">
+
                                     <div class="modal-content bg-gris">
+
                                         <div class="modal-header">
+
                                             <h4 class="modal-title" id="myModalLabel"><?php echo $add_a_vehicle ?></h4>
+
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                                 ×
                                             </button>
+
                                         </div>
-                                        <form class="form-horizontal " action="../models/action.php" method="post"
+
+
+                                        <form class="form-horizontal " action="../controller/action.php" method="post"
                                               enctype="multipart/form-data">
+
                                             <div class="modal-body">
+
                                                 <div class="form-group">
+
                                                     <div class="row">
                                                         <div class="col-md-6 m-b-0">
                                                             <div class="form-group mb-3">
@@ -92,11 +108,9 @@
                                                                     }
                                                                     ?>
                                                                 </select>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, selectionnez le type de devis
-                                                                </div>
                                                             </div>
                                                         </div>
+
                                                         <div class="col-md-6 m-b-0">
                                                             <div class="form-group mb-3">
                                                                 <label class="mr-sm-2"
@@ -104,11 +118,9 @@
                                                                 <input type="number" class="form-control "
                                                                        placeholder="" name="prix_vehicule_rental"
                                                                        id="prix_vehicule_rental" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
                                                         </div>
+
                                                         <div class="col-md-6 m-b-0">
                                                             <div class="form-group mb-3">
                                                                 <label class="mr-sm-2"
@@ -116,11 +128,9 @@
                                                                 <input type="number" class="form-control "
                                                                        placeholder="" name="nb_place_vehicule_rental"
                                                                        id="nb_place_vehicule_rental" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
                                                         </div>
+
                                                         <div class="col-md-6 m-b-0">
                                                             <div class="form-group mb-3">
                                                                 <label class="mr-sm-2"
@@ -131,11 +141,9 @@
                                                                     <option value="yes">Yes</option>
                                                                     <option value="no">No</option>
                                                                 </select>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, selectionnez le type de devis
-                                                                </div>
                                                             </div>
                                                         </div>
+
                                                         <div class="col-md-6 m-b-0">
                                                             <div class="form-group mb-3">
                                                                 <label class="mr-sm-2"
@@ -143,50 +151,54 @@
                                                                 <input type="number" class="form-control "
                                                                        placeholder="" name="nombre_vehicule_rental"
                                                                        id="nombre_vehicule_rental" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <!-- <div class="col-md-6 m-b-0">
-                                                            <div class="form-group mb-3">
-                                                                <label class="mr-sm-2" for="designation">Image</label>
-                                                                <input type="file" class="form-control " placeholder="" name="image_vehicule_rental" id="image_vehicule_rental" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
+
                                                     </div>
+
                                                 </div>
+
                                             </div>
+
                                             <div class="modal-footer">
                                                 <button type="submit"
                                                         class="btn btn-dark waves-effect"><?php echo $save ?></button>
                                                 <button type="button" class="btn btn-default waves-effect"
                                                         data-dismiss="modal"><?php echo $cancel ?></button>
                                             </div>
+
                                         </form>
+
                                     </div>
-                                    <!-- /.modal-content -->
+
                                 </div>
-                                <!-- /.modal-dialog -->
+
                             </div>
+
                             <div id="vehicule-mod" class="modal fade in" tabindex="-1" role="dialog"
                                  aria-labelledby="myModalLabel" aria-hidden="true">
+
                                 <div class="modal-dialog modal-lg">
+
                                     <div class="modal-content bg-gris">
+
                                         <div class="modal-header">
+
                                             <h4 class="modal-title"
                                                 id="myModalLabel"><?php echo $modify_a_vehicle; ?></h4>
+
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                                 ×
                                             </button>
                                         </div>
-                                        <form class="form-horizontal " action="../models/action.php" method="post"
+
+                                        <form class="form-horizontal " action="../controller/action.php" method="post"
                                               enctype="multipart/form-data">
+
                                             <div class="modal-body">
+
                                                 <div class="form-group">
+
                                                     <div class="row">
                                                         <input type="hidden" name="id_vehicule_rental_mod"
                                                                id="id_vehicule_rental_mod"
@@ -279,20 +291,29 @@
                                                             </div>
                                                         </div> -->
                                                     </div>
+
                                                 </div>
+
                                             </div>
+
                                             <div class="modal-footer">
+
                                                 <button type="submit"
                                                         class="btn btn-dark waves-effect"><?php echo $save; ?></button>
+
                                                 <button type="button" class="btn btn-default waves-effect"
                                                         data-dismiss="modal"><?php echo $cancel; ?></button>
+
                                             </div>
+
                                         </form>
+
                                     </div>
 
                                 </div>
 
                             </div>
+
                             <div class="table-responsive m-t-10">
                                 <?php
                                 $tab_vehicule[] = array();
@@ -319,7 +340,7 @@
                                         echo '
                                                         <tr>
                                                             <td>' . ($i + 1) . '</td>
-                                                            <td><img src="../assets/images/type_vehicle_rental/' . $tab_vehicule[$i]['image'] . '"width="100%"/></td>
+                                                            <td><img src="../public/assets/images/type_vehicle_rental/' . $tab_vehicule[$i]['image'] . '"width="100%"/></td>
                                                             <td>' . $tab_vehicule[$i]['libTypeVehicule'] . '</td>
                                                             <td>' . $tab_vehicule[$i]['nombre'] . '</td>
                                                             <td><span class="';
@@ -334,8 +355,8 @@
                                                             <td>
                                                                 <input type="hidden" value="' . $tab_vehicule[$i]['id'] . '" name="" id="id_vehicule_' . $i . '">
                                                                 <button type="button" onclick="modVehicule(id_vehicule_' . $i . '.value);" class="btn btn-warning btn-sm" data-original-title="Modify" data-toggle="modal" data-target="#vehicule-mod"><i class="fa fa-pencil"></i></button>
-                                                                <a href="../query/action.php?id_vehicule_rental_activer=' . $tab_vehicule[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
-                                                                <a href="../query/action.php?id_vehicule_rental_desactiver=' . $tab_vehicule[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
+                                                                <a href="../controller/action.php?id_vehicule_rental_activer=' . $tab_vehicule[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
+                                                                <a href="../controller/action.php?id_vehicule_rental_desactiver=' . $tab_vehicule[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
                                                             </td>
                                                         </tr>
                                                     ';
@@ -354,6 +375,7 @@
 
         <!-- footer -->
         <footer class="footer"> <?php include("include/footer.php"); ?> </footer>
+
     </div>
 </div>
 
@@ -363,7 +385,7 @@
 <script>
     function modVehicule(id_vehicule) {
         $.ajax({
-            url: "query/ajax/getVehiculeRentalById.php",
+            url: "../controller/getVehiculeRentalById.php",
             type: "POST",
             data: {"id_vehicule": id_vehicule},
             success: function (data) {

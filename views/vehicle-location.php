@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -105,10 +105,10 @@
                                                             <td>' . $tab_location[$i]['creer'] . '</td>
                                                             <td>' . $tab_location[$i]['modifier'] . '</td>
                                                             <td>
-                                                                <a href="../query/action.php?id_location=' . $tab_location[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
-                                                                <a href="../query/action.php?id_location_activer=' . $tab_location[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Accept"> <i class="fa fa-check"></i> </a>
-                                                                <a href="../query/action.php?id_location_desactiver=' . $tab_location[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Refuse"> <i class="fa fa-close"></i> </a>
-                                                                <a href="../query/action.php?id_location_cloturer=' . $tab_location[$i]['id'] . '" class="btn btn-info btn-sm" data-toggle="tooltip" data-original-title="Fence"> <i class="mdi mdi-alert"></i> </a>
+                                                                <a href="../controller/action.php?id_location=' . $tab_location[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
+                                                                <a href="../controller/action.php?id_location_activer=' . $tab_location[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Accept"> <i class="fa fa-check"></i> </a>
+                                                                <a href="../controller/action.php?id_location_desactiver=' . $tab_location[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Refuse"> <i class="fa fa-close"></i> </a>
+                                                                <a href="../controller/action.php?id_location_cloturer=' . $tab_location[$i]['id'] . '" class="btn btn-info btn-sm" data-toggle="tooltip" data-original-title="Fence"> <i class="mdi mdi-alert"></i> </a>
                                                             </td>
                                                         </tr>
                                                     ';
@@ -134,24 +134,6 @@
 <!--Include footer script-->
 <?php include("include/footer-script.php"); ?>
 
-<script>
-    function modAnnee(id_annee) {
-        $.ajax({
-            url: "query/ajax/getAnneeById.php",
-            type: "POST",
-            data: {"id_annee": id_annee},
-            success: function (data) {
-                $("#id_annee_mod").empty();
-                $("#libelle_annee_mod").empty();
-
-                var data_parse = JSON.parse(data);
-
-                $("#id_annee_mod").val(data_parse[0].id);
-                $("#libelle_annee_mod").val(data_parse[0].libelle);
-            }
-        });
-    }
-</script>
 
 </body>
 

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body>
 
@@ -16,7 +16,8 @@
 
             <div class="card-body">
 
-                <form class="form-horizontal form-material" id="loginform" action="../models/action.php" method="post">
+                <form class="form-horizontal form-material" id="loginform" action="../controller/action.php"
+                      method="post">
                     <h3 class="box-title m-b-20"><?php echo $login ?></h3>
                     <div class="form-group ">
                         <div class="col-xs-12">
@@ -30,11 +31,12 @@
                     </div>
                     <div class="form-group text-center m-t-20">
                         <div class="col-xs-12">
-                            <button class="btn btn-dark btn-lg btn-block text-uppercase waves-effect waves-light color-login"
+                            <button class="btn btn-lg btn-block text-uppercase waves-effect waves-light"
                                     type="submit"><?php echo $login ?></button>
                         </div>
                     </div>
                 </form>
+
 
                 <form class="form-horizontal" id="recoverform" action="">
                     <div class="form-group ">

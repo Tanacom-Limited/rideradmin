@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header fix-sidebar card-no-border">
 
@@ -90,6 +90,13 @@
                     <li class="breadcrumb-item active"><?php echo $dashboard ?></li>
                 </ol>
             </div>
+
+
+            <div>
+                <button class="right-side-toggle waves-effect waves-light  btn btn-circle btn-sm pull-right m-l-10 color-login">
+                    <i class="ti-settings text-white "></i></button>
+            </div>
+
 
         </div>
 
@@ -539,19 +546,19 @@
                                                             <td>' . $tab_conducteur[$i]['creer'] . '</td>
                                                             <td>' . $tab_conducteur[$i]['modifier'] . '</td>
                                                             <td>
-                                                                <a href="../models/action.php?id_conducteur_activer=' . $tab_conducteur[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
-                                                                <a href="driver-detail.php?id_conducteur=' . $tab_conducteur[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="View détails"> <i class="fa fa-ellipsis-h"></i> </a>
-                                                                
+                                                                <a href="../controller/action.php?id_driver_activate=' . $tab_conducteur[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>                                                          
                                                                           <input type="hidden" value="' . $tab_conducteur[$i]['id'] . '" name="" id="id_conducteur_' . $i . '">
-                                    <button type="button" onclick="modConducteur(id_conducteur_' . $i . '.value);" class="btn btn-warning btn-sm" data-original-title="Modify" data-toggle="modal" data-target="#conducteur-mod"><i class="fa fa-pencil"></i></button>
-                                    <a href="../models/action.php?id_conducteur=' . $tab_conducteur[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
-                                    <a href="../models/action.php?id_conducteur_desactiver=' . $tab_conducteur[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
+                                 
+                                    <a href="../controller/action.php?id_driver_del=' . $tab_conducteur[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
+                                    <a href="../controller/action.php?id_driver_deactivate=' . $tab_conducteur[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
                                                                 
                                                             </td>
                                                         </tr>
                                                     ';
                                     }
                                     ?>
+                                    <!--                                    <a href="driver-detail.php?id_conducteur=' . $tab_conducteur[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="View détails"> <i class="fa fa-ellipsis-h"></i> </a>-->
+                                    <!--                                    <button type="button" onclick="modConducteur(id_conducteur_' . $i . '.value);" class="btn btn-warning btn-sm" data-original-title="Modify" data-toggle="modal" data-target="#conducteur-mod"><i class="fa fa-pencil"></i></button>-->
 
                                     </tbody>
                                 </table>
@@ -688,13 +695,89 @@
                     <div id="map"></div>
 
                     <script async defer
-                            src="https://maps.googleapis.com/maps/api/js?key=KEY&callback=initMap">
+                            src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_API_KEY&callback=initMap">
                     </script>
 
                 </div>
             </div>
 
+            <!-- SETTING ROW -->
+            <div class="right-sidebar">
+
+                <div class="slimscrollright">
+
+                    <div class="rpanel-title"> Chat Panel <span><i class="ti-close right-side-toggle"></i></span>
+
+                    </div>
+
+                    <div class="r-panel-body">
+
+                        <ul class="m-t-20 chatonline">
+                            <li><b>Agents</b></li>
+
+
+                            <li>
+                                <a href="javascript:void(0)"><img src="https://i.pravatar.cc/151"
+                                                                  alt="user-img"
+                                                                  class="img-circle"> <span> Tandoh <small
+                                                class="text-success">online</small></span></a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0)"><img src="https://i.pravatar.cc/155"
+                                                                  alt="user-img"
+                                                                  class="img-circle"> <span>Ama<small
+                                                class="text-danger">Busy</small></span></a>
+                            </li>
+
+
+                            <li>
+                                <a href="javascript:void(0)"><img src="https://i.pravatar.cc/150"
+                                                                  alt="user-img"
+                                                                  class="img-circle"> <span>Isaac <small
+                                                class="text-warning">Away</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="https://i.pravatar.cc/160"
+                                                                  alt="user-img"
+                                                                  class="img-circle"> <span>Akowuah<small
+                                                class="text-danger">Busy</small></span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><img src="../public/assets/images/users/flag.png"
+                                                                  alt="user-img"
+                                                                  class="img-circle"> <span>Tanacom<small
+                                                class="text-muted">Offline</small></span></a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0)"><img src="https://i.pravatar.cc/157"
+                                                                  alt="user-img"
+                                                                  class="img-circle"> <span> Yakubu<small
+                                                class="text-success">online</small></span></a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0)"><img src="https://i.pravatar.cc/154"
+                                                                  alt="user-img"
+                                                                  class="img-circle"> <span>Afiba<small
+                                                class="text-warning">Away</small></span></a>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
         </div>
+
 
         <!-- footer -->
         <footer class="footer"> <?php include("include/footer.php"); ?> </footer>
@@ -706,6 +789,7 @@
 <!--Include footer script-->
 <?php include("include/footer-script.php"); ?>
 
+
 <script>
 
     initMap();
@@ -715,7 +799,7 @@
 
     function initMap() {
         $.ajax({
-            url: "../ajax/getAllVehicle.php",
+            url: "../controller/getAllVehicle.php",
             type: "POST",
             data: {"id": "ok"},
             success: function (data) {
@@ -740,9 +824,9 @@
                         }
 
                         if (online == "yes")
-                            var image = 'http://projets.hevenbf.com/on_demand_taxi/assets/images/marker.png';
+                            var image = '../public/assets/images/marker.png';
                         else
-                            var image = 'http://projets.hevenbf.com/on_demand_taxi/assets/images/marker_red.png';
+                            var image = '../public/assets/images/marker_red.png';
 
 
                         var marker = new google.maps.Marker({
@@ -844,7 +928,7 @@
 
     function getVehicleAll2() {
         $.ajax({
-            url: "../ajax/getAllVehicle.php",
+            url: "../controller/getAllVehicle.php",
             type: "POST",
             data: {"id": "ok"},
             success: function (data) {
@@ -859,10 +943,14 @@
                     var online = data_parse[i].online;
                     var nom_prenom = prenom + " " + nom;
                     var uluru = {lat: parseFloat(lat), lng: parseFloat(lng)};
+
+
                     if (online == "yes")
-                        var image = 'http://projets.hevenbf.com/on_demand_taxi/assets/images/marker.png';
+                        var image = '../public/assets/images/marker.png';
                     else
-                        var image = 'http://projets.hevenbf.com/on_demand_taxi/assets/images/marker_red.png';
+                        var image = '../public/assets/images/marker_red.png';
+
+
                     var marker = new google.maps.Marker({
                         position: uluru,
                         map: map,
@@ -889,14 +977,14 @@
 
     }
 
-    setInterval(foo, 7000);
+    setInterval(foo, 3000);
 
     apply(new Date().getFullYear());
 
     function apply(year) {
         $("#loader").css("display", "block");
         $.ajax({
-            url: "../ajax/getEarningStatsDashboard.php",
+            url: "../controller/getEarningStatsDashboard.php",
             type: "POST",
             data: {"year": year},
             success: function (data) {

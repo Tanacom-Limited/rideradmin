@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -39,13 +39,11 @@
                     <li class="breadcrumb-item active"><?php echo $request; ?></li>
                 </ol>
             </div>
-            <div>
-                <!-- <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button> -->
-            </div>
         </div>
 
         <!-- Container fluid  -->
         <div class="container-fluid">
+
             <!-- Start Page Content -->
             <div class="row">
                 <div class="col-12">
@@ -63,6 +61,7 @@
                                        class="display nowrap table table-hover table-striped table-bordered"
                                        cellspacing="0" width="100%">
                                     <thead>
+
                                     <tr>
                                         <th>N°</th>
                                         <th><?php echo $payment; ?></th>
@@ -74,15 +73,16 @@
                                         <th><?php echo $distance; ?></th>
                                         <th><?php echo $duration; ?></th>
                                         <th><?php echo $cost; ?> (<?php echo $tab_currency[0]['symbole'] ?>)</th>
-                                        <!-- <th>Path</th> -->
                                         <th><?php echo $status; ?></th>
-                                        <!-- <th>Race status</th> -->
                                         <th><?php echo $created; ?></th>
                                         <th><?php echo $modified; ?></th>
-                                        <th><?php echo $actions; ?></th>
+<!--                                        <th>--><//php //echo $actions; ?><!--</th>-->
                                     </tr>
+
                                     </thead>
+
                                     <tbody>
+
                                     <?php
                                     for ($i = 0; $i < count($tab_requete); $i++) {
                                         $distance = $tab_requete[$i]['distance'];
@@ -100,7 +100,7 @@
                                             $statut_pay = 'Not paid';
                                         }
                                         echo '">' . $statut_pay . '</span></td>
-                                                            <td width="5%"><img src="assets/images/payment_method/' . $tab_requete[$i]['payment_image'] . '" alt="" width="100%"></td>
+                                                            <td width="5%"><img src="../public/assets/images/payment_method/' . $tab_requete[$i]['payment_image'] . '" alt="" width="100%"></td>
                                                             <td>' . $tab_requete[$i]['nom'] . ' ' . $tab_requete[$i]['prenom'] . '</td>
                                                             <td>' . $tab_requete[$i]['nomDriver'] . ' ' . $tab_requete[$i]['prenomDriver'] . '</td>
                                                             <td>' . $tab_requete[$i]['depart_name'] . '</td>
@@ -114,98 +114,33 @@
                                                             <td>';
                                         if ($tab_requete[$i]['statut'] == "new" || $tab_requete[$i]['statut'] == "canceled" || $tab_requete[$i]['statut'] == "rejected") {
                                             echo '
-                                                                        <input type="hidden" value="' . $tab_requete[$i]['id'] . '" name="" id="id_affectation_' . $i . '">
-                                                                        <a href="../query/action.php?id_affectation=' . $tab_requete[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
+                                                                   
+                                                                        
+                                                                   
                                                                     ';
                                         }
                                         echo '</td>
                                                         </tr>
                                                     ';
-                                        // <a href="query/action.php?id_affectation_activer='.$tab_requete[$i]['id'].'" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
-                                        // <a href="query/action.php?id_affectation_desactiver='.$tab_requete[$i]['id'].'" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
-                                        // <button type="button" onclick="modAnnee(id_affectation_'.$i.'.value);" class="btn btn-warning btn-sm" data-original-title="Modifier" data-toggle="modal" data-target="#annee-mod"><i class="fa fa-pencil"></i></button>
+
                                     }
                                     ?>
                                     </tbody>
+
                                 </table>
+
+                                <!--                                <a href="../controller/action.php?id_affectation=' . $tab_requete[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>-->
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
-            </div>
-            <!-- .right-sidebar -->
-            <div class="right-sidebar">
-                <div class="slimscrollright">
-                    <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span>
-                    </div>
-                    <div class="r-panel-body">
-                        <ul id="themecolors" class="m-t-20">
-                            <li><b>With Light sidebar</b></li>
-                            <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
-                            <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
-                            <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
-                            <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme working">4</a></li>
-                            <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
-                            <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
-                            <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
-                            <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a>
-                            </li>
-                            <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
-                            <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
-                            <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
-                            <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a>
-                            </li>
-                            <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a>
-                            </li>
-                        </ul>
-                        <ul class="m-t-20 chatonline">
-                            <li><b>Chat option</b></li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/1.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Varun Dhavan <small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/2.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Genelia Deshmukh <small
-                                                class="text-warning">Away</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/3.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Ritesh Deshmukh <small
-                                                class="text-danger">Busy</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/4.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Arijit Sinh <small
-                                                class="text-muted">Offline</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/5.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Govinda Star <small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/6.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>John Abraham<small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/7.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Hritik Roshan<small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="assets/images/users/8.jpg" alt="user-img"
-                                                                  class="img-circle"> <span>Pwandeep rajan <small
-                                                class="text-success">online</small></span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+
             </div>
 
-            <!-- End Right sidebar -->
         </div>
         <!-- footer -->
         <footer class="footer"> <?php include("include/footer.php"); ?> </footer>
@@ -214,29 +149,8 @@
 
 </div>
 
-
 <!--Include footer script-->
 <?php include("include/footer-script.php"); ?>
-
-<script>
-    function modAnnee(id_annee) {
-        $.ajax({
-            url: "query/ajax/getAnneeById.php",
-            type: "POST",
-            data: {"id_annee": id_annee},
-            success: function (data) {
-                $("#id_annee_mod").empty();
-                $("#libelle_annee_mod").empty();
-
-                var data_parse = JSON.parse(data);
-
-                $("#id_annee_mod").val(data_parse[0].id);
-                $("#libelle_annee_mod").val(data_parse[0].libelle);
-            }
-        });
-    }
-</script>
-
 
 </body>
 

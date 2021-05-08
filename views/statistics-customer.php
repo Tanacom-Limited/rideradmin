@@ -3,12 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
 <!-- Main wrapper - style you can find in pages.scss -->
 <div id="main-wrapper">
+
     <!-- Topbar header - style you can find in pages.scss -->
     <header class="topbar">
         <nav class="navbar top-navbar navbar-expand-md navbar-light">
@@ -51,12 +52,14 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
+
                                     <div class="form-group mb-3">
                                         <?php
                                         $tab_user_app[] = array();
                                         $tab_user_app = getUserApp();
                                         ?>
                                         <label class="mr-sm-2" for="designation"><?php echo $customer; ?></label>
+
                                         <select class="form-control " id="customer" name="customer" required>
                                             <?php
                                             for ($i = 0; $i < count($tab_user_app); $i++) {
@@ -85,6 +88,7 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-md-3">
                                     <div class="form-group mb-3">
                                         <label class="mr-sm-2" for="designation"><?php echo $year; ?></label>
@@ -99,13 +103,18 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-md-1 m-t-30">
                                     <button type="submit" class="btn btn-dark waves-effect" style="height:37px;"
                                             onclick="apply(customer.value,month.value,year.value)"><?php echo $apply; ?></button>
                                 </div>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
 
                 <div class="col-lg-12">
@@ -148,29 +157,13 @@
 <?php include("include/footer-script.php"); ?>
 
 <script>
-    function modAnnee(id_annee) {
-        $.ajax({
-            url: "query/ajax/getAnneeById.php",
-            type: "POST",
-            data: {"id_annee": id_annee},
-            success: function (data) {
-                $("#id_annee_mod").empty();
-                $("#libelle_annee_mod").empty();
-
-                var data_parse = JSON.parse(data);
-
-                $("#id_annee_mod").val(data_parse[0].id);
-                $("#libelle_annee_mod").val(data_parse[0].libelle);
-            }
-        });
-    }
 
     apply($("#customer").val(), $("#month").val(), $("#year").val());
 
     function apply(id_customer, month, year) {
         $("#loader").css("display", "block");
         $.ajax({
-            url: "query/ajax/getCustomerStats.php",
+            url: "../controller/getCustomerStats.php",
             type: "POST",
             data: {"id_customer": id_customer, "month": month, "year": year},
             success: function (data) {
@@ -447,6 +440,8 @@
             }
         });
     }
+
+
 </script>
 
 

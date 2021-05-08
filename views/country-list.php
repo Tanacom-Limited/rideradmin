@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -47,23 +47,44 @@
 
             <!-- Start Page Content -->
             <div class="row">
+
                 <div class="col-12">
+
                     <div class="card">
+
                         <div class="card-body">
+
+
                             <h4 class="card-title"><?php echo $list_of_countries; ?></h4>
+
+
+                            <button type="button" class="btn btn-dark btn-sm" data-toggle="modal"
+                                    data-target="#add-country"><i class="fa fa-plus m-r-10"></i><?php echo $add; ?>
+                            </button>
+
                             <div id="add-country" class="modal fade in" tabindex="-1" role="dialog"
+
                                  aria-labelledby="myModalLabel" aria-hidden="true">
+
                                 <div class="modal-dialog modal-lg">
+
                                     <div class="modal-content bg-gris">
+
                                         <div class="modal-header">
+
                                             <h4 class="modal-title" id="myModalLabel"><?php echo $add_a_country; ?></h4>
+
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                                 ×
                                             </button>
                                         </div>
-                                        <form class="form-horizontal " action="../models/action.php" method="post">
+
+                                        <form class="form-horizontal " action="../controller/action.php" method="post">
+
                                             <div class="modal-body">
+
                                                 <div class="form-group">
+
                                                     <div class="row">
                                                         <div class="col-md-12 m-b-0">
                                                             <div class="form-group mb-3">
@@ -71,9 +92,6 @@
                                                                        for="designation"><?php echo $name; ?></label>
                                                                 <input type="text" class="form-control " placeholder=""
                                                                        name="libelle_country" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12 m-b-0">
@@ -82,26 +100,30 @@
                                                                        for="designation"><?php echo $code; ?></label>
                                                                 <input type="text" class="form-control " placeholder=""
                                                                        name="code_country" required>
-                                                                <div class="invalid-feedback">
-                                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                 </div>
+
                                             </div>
+
                                             <div class="modal-footer">
                                                 <button type="submit"
                                                         class="btn btn-dark waves-effect"><?php echo $save; ?></button>
                                                 <button type="button" class="btn btn-default waves-effect"
                                                         data-dismiss="modal"><?php echo $cancel; ?></button>
                                             </div>
+
+
                                         </form>
+
                                     </div>
-                                    <!-- /.modal-content -->
+
                                 </div>
-                                <!-- /.modal-dialog -->
+
                             </div>
+
                             <div id="country-mod" class="modal fade in" tabindex="-1" role="dialog"
                                  aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
@@ -113,7 +135,7 @@
                                                 ×
                                             </button>
                                         </div>
-                                        <form class="form-horizontal " action="../models/action.php" method="post">
+                                        <form class="form-horizontal " action="../controller/action.php" method="post">
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <div class="row">
@@ -154,10 +176,11 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <!-- /.modal-content -->
+
                                 </div>
-                                <!-- /.modal-dialog -->
+
                             </div>
+
                             <div class="table-responsive m-t-10">
                                 <?php
                                 $tab_country[] = array();
@@ -195,22 +218,31 @@
                                                             <td>' . $tab_country[$i]['creer'] . '</td>
                                                             <td>' . $tab_country[$i]['modifier'] . '</td>
                                                             <td>
+                                       <a href="../controller/action.php?id_country_activer=' . $tab_country[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
+                                       
+                                     <input type="hidden" value="' . $tab_country[$i]['id'] . '" name="" id="id_currency_' . $i . '">
+                                     
+                                     <button type="button" onclick="modCountry(id_currency_' . $i . '.value);" class="btn btn-warning btn-sm" data-original-title="Modifiy" data-toggle="modal" data-target="#country-mod"><i class="fa fa-pencil"></i></button>
+                                     
+                                     <a href="../controller/action.php?id_country=' . $tab_country[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
+
+                                                            
                                                             </td>
                                                         </tr>
                                                     ';
                                     }
-                                    // <a href="query/action.php?id_country_activer='.$tab_country[$i]['id'].'" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
-                                    // <input type="hidden" value="'.$tab_country[$i]['id'].'" name="" id="id_currency_'.$i.'">
-                                    // <button type="button" onclick="modCountry(id_currency_'.$i.'.value);" class="btn btn-warning btn-sm" data-original-title="Modifiy" data-toggle="modal" data-target="#country-mod"><i class="fa fa-pencil"></i></button>
-                                    // <a href="query/action.php?id_country='.$tab_country[$i]['id'].'" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
 
                                     ?>
                                     </tbody>
                                 </table>
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
 
         </div>
@@ -228,7 +260,7 @@
 <script>
     function modCountry(id_country) {
         $.ajax({
-            url: "query/ajax/getCountryById.php",
+            url: "../controller/getCountryById.php",
             type: "POST",
             data: {"id_country": id_country},
             success: function (data) {

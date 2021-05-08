@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -416,7 +416,10 @@
                                                             <td>
                                                                 <input type="hidden" value="' . $tab_user[$i]['id'] . '" name="" id="id_user_' . $i . '">
                                                                 
-                                                                <button type="button" onclick="modUser(id_user_' . $i . '.value);" class="btn btn-warning btn-sm" data-original-title="Modified" data-toggle="modal" data-target="#user-mod"><i class="fa fa-pencil"></i></button>                                                                
+                                                                <button type="button" onclick="modUsers(id_user_' . $i . '.value);" class="btn btn-warning btn-sm" data-original-title="Modified" data-toggle="modal" data-target="#user-mod"><i class="fa fa-pencil"></i></button>         
+              
+                                                                 
+              
                                                                 <a href="../controller/action.php?id_user=' . $tab_user[$i]['id'] . '" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
                                                                 <a href="../controller/action.php?id_user_activer=' . $tab_user[$i]['id'] . '" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
                                                                 <a href="../controller/action.php?id_user_desactiver=' . $tab_user[$i]['id'] . '" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a>
@@ -425,8 +428,11 @@
                                                     ';
                                     }
                                     ?>
+
+
                                     </tbody>
                                 </table>
+
 
                             </div>
 
@@ -434,7 +440,7 @@
                     </div>
                 </div>
             </div>
-
+            <!--             <button type="button" onclick="modUsers(' . $tab_user[$i]['id'] . ');" class="btn btn-warning btn-sm" data-original-title="Modified" data-toggle="modal" data-target="#user-mod"><i class="fa fa-pencil"></i></button>-->
 
         </div>
 
@@ -449,13 +455,13 @@
 <!--Include footer script-->
 <?php include("include/footer-script.php"); ?>
 
-
 <script>
 
+
     // Call when updating users
-    function modUser(id_user) {
+    function modUsers(id_user) {
         $.ajax({
-            url: "../ajax/getUserById.php",
+            url: "../controller/getUserById.php",
             type: "POST",
             data: {"id_user": id_user},
             success: function (data) {

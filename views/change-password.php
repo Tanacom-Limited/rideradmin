@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("include/head.php"); ?>
+<?php include("include/header-script.php"); ?>
 
 <body class="fix-header card-no-border">
 
@@ -53,7 +53,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title"><?php echo $change_your_pwd; ?></h4>
-                            <form class="form-horizontal " action="../models/action.php" method="post">
+                            <form class="form-horizontal " action="../controller/action.php" method="post">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-4 m-b-0">
@@ -61,9 +61,6 @@
                                                 <label class="mr-sm-2" for="designation"><?php echo $old_pwd; ?></label>
                                                 <input type="password" class="form-control " placeholder=""
                                                        name="anc_mdp" id="anc_mdp" required>
-                                                <div class="invalid-feedback">
-                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 m-b-0">
@@ -71,9 +68,6 @@
                                                 <label class="mr-sm-2" for="designation"><?php echo $new_pwd; ?></label>
                                                 <input type="password" class="form-control " placeholder=""
                                                        name="new_mdp" id="new_mdp" onkeyup="checkMdp()" required>
-                                                <div class="invalid-feedback">
-                                                    Désolé, entrez l'intitulé de la catégorie de devis
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 m-b-0">
@@ -82,9 +76,6 @@
                                                        for="designation"><?php echo $confirm_pwd; ?></label>
                                                 <input type="password" class="form-control " placeholder=""
                                                        name="conf_mdp" id="conf_mdp" onkeyup="checkMdp()" required>
-                                                <div class="invalid-feedback" id="message" style="color:red;">
-                                                    Les mots de passe ne sont pas identiques.
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
