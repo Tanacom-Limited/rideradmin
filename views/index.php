@@ -1,4 +1,4 @@
-<?php include("include/checker.php"); ?>
+<?php //include("include/checker.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@
 
             <div>
                 <button class="right-side-toggle waves-effect waves-light  btn btn-circle btn-sm pull-right m-l-10 color-login">
-                    <i class="ti-settings text-white "></i></button>
+                    <i class="ti-pencil text-white "></i></button>
             </div>
 
         </div>

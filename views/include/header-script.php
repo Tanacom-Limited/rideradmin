@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../public/assets/images/favicon.png">
-    <title><?php echo $title; ?></title>
+    <title><?php echo !empty($title) ? $title : 'Delivery4U - Home'; ?></title>
     <link href="../public/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../public/assets/plugins/morrisjs/morris.css" rel="stylesheet">
     <link href="../public/css/style.css" rel="stylesheet">
