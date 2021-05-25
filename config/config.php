@@ -1,6 +1,6 @@
 <?php
 define("DEFAULT_TIMEZONE", "Africa/Accra"); // set php date functions timezone
-define("DEVELOPMENT_MODE", true);// set to false when in production
+define("DEVELOPMENT_MODE", false);// set to false when in production
 
 // return full path of application directory
 define("ROOT", str_replace("\\", "/", dirname(__FILE__)) . "/");
