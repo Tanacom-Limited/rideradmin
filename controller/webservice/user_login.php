@@ -1,12 +1,12 @@
 <?php
-date_default_timezone_set('Africa/Ouagadougou');
+date_default_timezone_set('Africa/Accra');
 
-include("../models/DB.php");
+require_once('../../models/DB_API.php');
 
-DB::initialize();
-
+DB_API::initialize();
 
 $response = array();
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -16,16 +16,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $telephone = $_POST['phone'];
     $mdp = str_replace("'", "\'", $mdp);
     $telephone = str_replace("'", "\'", $telephone);
-    $checkuser = mysqli_query(DB::$conn, "select * from tbl_user_app where phone='$telephone'");
+    $checkuser = mysqli_query(DB_API::$conn, "select * from tbl_user_app where phone='$telephone'");
 
 
     if (mysqli_num_rows($checkuser)) {
 
-
-        $checkaccount = mysqli_query(DB::$conn, "select * from tbl_user_app where phone='$telephone' and statut='yes'");
+        $checkaccount = mysqli_query(DB_API::$conn, "select * from tbl_user_app where phone='$telephone' and statut='yes'");
 
         if (mysqli_num_rows($checkaccount)) {
-            $checkpwd = mysqli_query(DB::$conn, "select * from tbl_user_app where phone='$telephone' and mdp='$mdp'");
+            $checkpwd = mysqli_query(DB_API::$conn, "select * from tbl_user_app where phone='$telephone' and mdp='$mdp'");
             if (mysqli_num_rows($checkpwd)) {
                 $response['msg']['etat'] = 1;
                 $response['msg']['message'] = "Success";
@@ -34,11 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $row['user_cat'] = "user_app";
                 $row['online'] = "";
                 $id_user = $row['id'];
-                $get_currency = mysqli_query(DB::$conn, "select * from tbl_currency where statut='yes' limit 1");
+                $get_currency = mysqli_query(DB_API::$conn, "select * from tbl_currency where statut='yes' limit 1");
                 $row_currency = $get_currency->fetch_assoc();
                 $row['currency'] = $row_currency['symbole'];
 
-                $get_country = mysqli_query(DB::$conn, "select * from tbl_country where statut='yes' limit 1");
+                $get_country = mysqli_query(DB_API::$conn, "select * from tbl_country where statut='yes' limit 1");
                 $row_country = $get_country->fetch_assoc();
                 $row['country'] = $row_country['code'];
 
@@ -51,12 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } else {
 
-
-        $checkuser = mysqli_query(DB::$conn, "select * from tbl_driver where phone='$telephone'");
+        $checkuser = mysqli_query(DB_API::$conn, "select * from tbl_driver where phone='$telephone'");
         if (mysqli_num_rows($checkuser)) {
-            $checkaccount = mysqli_query(DB::$conn, "select * from tbl_driver where phone='$telephone' and statut='yes'");
+            $checkaccount = mysqli_query(DB_API::$conn, "select * from tbl_driver where phone='$telephone' and statut='yes'");
             if (mysqli_num_rows($checkaccount)) {
-                $checkpwd = mysqli_query(DB::$conn, "select * from tbl_driver where phone='$telephone' and mdp='$mdp'");
+                $checkpwd = mysqli_query(DB_API::$conn, "select * from tbl_driver where phone='$telephone' and mdp='$mdp'");
                 if (mysqli_num_rows($checkpwd)) {
                     $response['msg']['etat'] = 1;
                     $response['msg']['message'] = "Success";
@@ -65,15 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $row['user_cat'] = "conducteur";
                     $id_user = $row['id'];
 
-                    $get_currency = mysqli_query(DB::$conn, "select * from tbl_currency where statut='yes' limit 1");
+                    $get_currency = mysqli_query(DB_API::$conn, "select * from tbl_currency where statut='yes' limit 1");
                     $row_currency = $get_currency->fetch_assoc();
                     $row['currency'] = $row_currency['symbole'];
 
-                    $get_country = mysqli_query(DB::$conn, "select * from tbl_country where statut='yes' limit 1");
+                    $get_country = mysqli_query(DB_API::$conn, "select * from tbl_country where statut='yes' limit 1");
                     $row_country = $get_country->fetch_assoc();
                     $row['country'] = $row_country['code'];
 
-                    $get_vehicle = mysqli_query(DB::$conn, "select * from tbl_vehicle where statut='yes' AND id_conducteur=$id_user");
+                    $get_vehicle = mysqli_query(DB_API::$conn, "select * from tbl_vehicle where statut='yes' AND id_conducteur=$id_user");
                     $row_vehicle = $get_vehicle->fetch_assoc();
                     $row['brand'] = $row_vehicle['brand'];
                     $row['model'] = $row_vehicle['model'];
@@ -92,7 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     echo json_encode($response);
-    mysqli_close(DB::$conn);
+
+    mysqli_close(DB_API::$conn);
+
 }
 
 

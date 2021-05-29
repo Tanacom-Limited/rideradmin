@@ -1,8 +1,8 @@
 <?php
 
-require_once('../config/config.php');
+require_once('../../config/config.php');
 
-class DB
+class DB_API
 {
 
     /** TRUE if static variables have been initialized. FALSE otherwise
@@ -19,6 +19,7 @@ class DB
 
     public static function initialize()
     {
+
 
         if (self::$init === TRUE) return;
         self::$init = TRUE;

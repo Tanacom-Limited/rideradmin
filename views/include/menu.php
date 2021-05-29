@@ -5,7 +5,7 @@
     <div class="profile-img">
         <img src="../public/assets/images/users/flag.png" alt="user"/>
         <!-- this is blinking heartbit-->
-        <div class="notify setpos"><span class="heartbit"></span> <span class="point"></span></div>
+<!--        <div class="notify setpos"><span class="heartbit"></span> <span class="point"></span></div>-->
     </div>
 
     <?php

@@ -524,7 +524,7 @@
                                                                 <div class="user-profile" style="width:100%;">
                                                                     <div class="profile-img" style="width:100%;">';
                                         if ($tab_conducteur[$i]['photo_path'] == "") {
-                                            echo '<img src="../webservice/images/app_user/user_profile.jpg" alt="" width="100%" style="width:70px;height:70px;">';
+                                            echo '<img src="../controller/webservice/images/app_user/user_profile.jpg" alt="" width="100%" style="width:70px;height:70px;">';
                                         } else {
                                             echo '<img src="../webservice/images/app_user/' . $tab_conducteur[$i]['photo_path'] . '" alt="" width="100%" style="width:70px;height:70px;">';
                                         }

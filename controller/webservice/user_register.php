@@ -2,10 +2,9 @@
 
 date_default_timezone_set('Africa/Accra');
 
-include("../models/DB.php");
+require_once('../../models/DB_API.php');
 
-DB::initialize();
-
+DB_API::initialize();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -23,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($account_type == "customer") {
 
-        $chkemail = mysqli_query(DB::$conn, "select * from tbl_user_app where phone='$phone'");
+        $chkemail = mysqli_query(DB_API::$conn, "select * from tbl_user_app where phone='$phone'");
 
         if (mysqli_num_rows($chkemail) > 0) {
             $row = $chkemail->fetch_assoc();
@@ -40,22 +39,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         } else {
-            $insertdata = mysqli_query(DB::$conn, "insert into tbl_user_app(prenom,phone,mdp,statut,login_type,tonotify,creer)
+            $insertdata = mysqli_query(DB_API::$conn, "insert into tbl_user_app(prenom,phone,mdp,statut,login_type,tonotify,creer)
                     values('$firstname','$phone','$password','yes','$login_type','$tonotify','$date_heure')");
-            $id = mysqli_insert_id(DB::$conn);
+            $id = mysqli_insert_id(DB_API::$conn);
             if ($insertdata > 0) {
                 $response['msg']['etat'] = 1;
 
-                $get_user = mysqli_query(DB::$conn, "select * from tbl_user_app where id=$id");
+                $get_user = mysqli_query(DB_API::$conn, "select * from tbl_user_app where id=$id");
                 $row = $get_user->fetch_assoc();
                 unset($row['mdp']);
                 $row['user_cat'] = "user_app";
 
-                $get_currency = mysqli_query(DB::$conn, "select * from tbl_currency where statut='yes' limit 1");
+                $get_currency = mysqli_query(DB_API::$conn, "select * from tbl_currency where statut='yes' limit 1");
                 $row_currency = $get_currency->fetch_assoc();
                 $row['currency'] = $row_currency['symbole'];
 
-                $get_country = mysqli_query(DB::$conn, "select * from tbl_country where statut='yes' limit 1");
+                $get_country = mysqli_query(DB_API::$conn, "select * from tbl_country where statut='yes' limit 1");
                 $row_country = $get_country->fetch_assoc();
                 $row['country'] = $row_country['code'];
 
@@ -68,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     } else {
-        $chkemail = mysqli_query(DB::$conn, "select * from tbl_driver where phone='$phone'");
+        $chkemail = mysqli_query(DB_API::$conn, "select * from tbl_driver where phone='$phone'");
         if (mysqli_num_rows($chkemail) > 0) {
             $row = $chkemail->fetch_assoc();
 
@@ -82,22 +81,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $response['msg']['message'] = "Phone number already exist...";
             }
         } else {
-            $insertdata = mysqli_query(DB::$conn, "insert into tbl_driver(online,prenom,phone,mdp,statut,login_type,tonotify,creer,statut_licence,statut_nic,statut_vehicule,email)
+            $insertdata = mysqli_query(DB_API::$conn, "insert into tbl_driver(online,prenom,phone,mdp,statut,login_type,tonotify,creer,statut_licence,statut_nic,statut_vehicule,email)
                     values('yes','$firstname','$phone','$password','no','$login_type','$tonotify','$date_heure','no','no','no','$email')");
-            $id = mysqli_insert_id(DB::$conn);
+            $id = mysqli_insert_id(DB_API::$conn);
             if ($insertdata > 0) {
                 $response['msg']['etat'] = 1;
 
-                $get_user = mysqli_query(DB::$conn, "select * from tbl_driver where id=$id");
+                $get_user = mysqli_query(DB_API::$conn, "select * from tbl_driver where id=$id");
                 $row = $get_user->fetch_assoc();
                 unset($row['mdp']);
                 $row['user_cat'] = "conducteur";
 
-                $get_currency = mysqli_query(DB::$conn, "select * from tbl_currency where statut='yes' limit 1");
+                $get_currency = mysqli_query(DB_API::$conn, "select * from tbl_currency where statut='yes' limit 1");
                 $row_currency = $get_currency->fetch_assoc();
                 $row['currency'] = $row_currency['symbole'];
 
-                $get_country = mysqli_query(DB::$conn, "select * from tbl_country where statut='yes' limit 1");
+                $get_country = mysqli_query(DB_API::$conn, "select * from tbl_country where statut='yes' limit 1");
                 $row_country = $get_country->fetch_assoc();
                 $row['country'] = $row_country['code'];
 
@@ -108,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             $sql = "SELECT * FROM tbl_settings LIMIT 1";
-            $result = mysqli_query(DB::$conn, $sql);
+            $result = mysqli_query(DB_API::$conn, $sql);
             $email_admin = '';
             // output data of each row
             while ($row = mysqli_fetch_assoc($result)) {
@@ -157,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     echo json_encode($response);
 
-    mysqli_close(DB::$conn);
+    mysqli_close(DB_API::$conn);
 
 }
 

@@ -3,8 +3,11 @@ ob_start();
 
 session_start(); // Start or Resume Session
 
-
 require('config/config.php');
+
+//include('Router.php');
+//$request = $_SERVER['REQUEST_URI'];
+//$router = new Router($request);
 
 //Error reporting for debugging during development
 if (DEVELOPMENT_MODE == true) {

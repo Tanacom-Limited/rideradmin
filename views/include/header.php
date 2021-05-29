@@ -50,10 +50,16 @@
         <!-- Notification -->
         <li class="nav-item">
 
+
             <a class="nav-link  text-muted waves-effect waves-dark" href="notification.php"
                aria-expanded="true"><img src="../public/assets/images/users/ic_notification.png"
                                          alt="notification"
-                                         class="profile-pic"/></a>
+                                         class="profile-pic"/>
+
+                <div class="notify setpos"><span class="heartbit"></span> <span class="point"></span></div>
+
+            </a>
+
 
         </li>
 
